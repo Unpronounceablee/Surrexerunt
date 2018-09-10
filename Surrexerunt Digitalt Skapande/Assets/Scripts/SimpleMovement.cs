@@ -5,14 +5,12 @@ using UnityEngine;
 public class SimpleMovement : MonoBehaviour
 {
     protected Rigidbody2D rb2d;
-    [SerializeField]
-    protected float speed;
+    public static float speed = 10;
     
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-
     }
 
     void FixedUpdate()
@@ -20,9 +18,10 @@ public class SimpleMovement : MonoBehaviour
         ControllObject();
     }
 
-    public void ControllObject()
+    public virtual void ControllObject()
     {
         rb2d.AddForce(new Vector2(Input.GetAxis("Horizontal") * speed, 0));
 
     }
+
 }
