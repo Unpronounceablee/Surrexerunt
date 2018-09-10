@@ -160,8 +160,8 @@ GameObject:
   m_Component:
   - component: {fileID: 329801080}
   - component: {fileID: 329801083}
-  - component: {fileID: 329801082}
   - component: {fileID: 329801081}
+  - component: {fileID: 329801082}
   m_Layer: 0
   m_Name: treeSample (10)
   m_TagString: Untagged
@@ -210,11 +210,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 329801079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 3
+  parralaxLayer: 3
 --- !u!212 &329801083
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -270,8 +269,8 @@ GameObject:
   m_Component:
   - component: {fileID: 351802872}
   - component: {fileID: 351802875}
-  - component: {fileID: 351802874}
   - component: {fileID: 351802873}
+  - component: {fileID: 351802874}
   m_Layer: 0
   m_Name: treeSample (2)
   m_TagString: Untagged
@@ -320,11 +319,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 351802871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 3
+  parralaxLayer: 3
 --- !u!212 &351802875
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -380,8 +378,8 @@ GameObject:
   m_Component:
   - component: {fileID: 507154483}
   - component: {fileID: 507154486}
-  - component: {fileID: 507154485}
   - component: {fileID: 507154484}
+  - component: {fileID: 507154485}
   m_Layer: 0
   m_Name: treeSample (8)
   m_TagString: Untagged
@@ -430,11 +428,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 507154482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 2
+  parralaxLayer: 2
 --- !u!212 &507154486
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -490,8 +487,8 @@ GameObject:
   m_Component:
   - component: {fileID: 532668965}
   - component: {fileID: 532668968}
-  - component: {fileID: 532668967}
   - component: {fileID: 532668966}
+  - component: {fileID: 532668967}
   m_Layer: 0
   m_Name: treeSample (1)
   m_TagString: Untagged
@@ -540,11 +537,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 532668964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 2
+  parralaxLayer: 2
 --- !u!212 &532668968
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -600,8 +596,8 @@ GameObject:
   m_Component:
   - component: {fileID: 623488759}
   - component: {fileID: 623488762}
-  - component: {fileID: 623488761}
   - component: {fileID: 623488760}
+  - component: {fileID: 623488761}
   m_Layer: 0
   m_Name: treeSample (7)
   m_TagString: Untagged
@@ -650,11 +646,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 623488758}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 3
+  parralaxLayer: 3
 --- !u!212 &623488762
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -825,8 +820,8 @@ GameObject:
   m_Component:
   - component: {fileID: 722182484}
   - component: {fileID: 722182487}
-  - component: {fileID: 722182486}
   - component: {fileID: 722182485}
+  - component: {fileID: 722182486}
   m_Layer: 0
   m_Name: treeSample (7)
   m_TagString: Untagged
@@ -875,11 +870,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 722182483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 2
+  parralaxLayer: 2
 --- !u!212 &722182487
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -935,8 +929,8 @@ GameObject:
   m_Component:
   - component: {fileID: 737549365}
   - component: {fileID: 737549368}
-  - component: {fileID: 737549367}
   - component: {fileID: 737549366}
+  - component: {fileID: 737549367}
   m_Layer: 0
   m_Name: treeSample (5)
   m_TagString: Untagged
@@ -985,11 +979,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 737549364}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 3
+  parralaxLayer: 3
 --- !u!212 &737549368
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1045,8 +1038,8 @@ GameObject:
   m_Component:
   - component: {fileID: 895958916}
   - component: {fileID: 895958919}
-  - component: {fileID: 895958918}
   - component: {fileID: 895958917}
+  - component: {fileID: 895958918}
   m_Layer: 0
   m_Name: treeSample (4)
   m_TagString: Untagged
@@ -1095,11 +1088,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 895958915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 2
+  parralaxLayer: 2
 --- !u!212 &895958919
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1155,8 +1147,8 @@ GameObject:
   m_Component:
   - component: {fileID: 940133156}
   - component: {fileID: 940133159}
-  - component: {fileID: 940133158}
   - component: {fileID: 940133157}
+  - component: {fileID: 940133158}
   m_Layer: 0
   m_Name: treeSample (3)
   m_TagString: Untagged
@@ -1205,11 +1197,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 940133155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 3
+  parralaxLayer: 3
 --- !u!212 &940133159
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1265,8 +1256,8 @@ GameObject:
   m_Component:
   - component: {fileID: 966765569}
   - component: {fileID: 966765568}
-  - component: {fileID: 966765570}
   - component: {fileID: 966765571}
+  - component: {fileID: 966765570}
   m_Layer: 0
   m_Name: treeSample
   m_TagString: Untagged
@@ -1341,11 +1332,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 966765567}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 2
+  parralaxLayer: 2
 --- !u!50 &966765571
 Rigidbody2D:
   serializedVersion: 4
@@ -1375,8 +1365,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1056258374}
   - component: {fileID: 1056258377}
-  - component: {fileID: 1056258376}
   - component: {fileID: 1056258375}
+  - component: {fileID: 1056258376}
   m_Layer: 0
   m_Name: treeSample (6)
   m_TagString: Untagged
@@ -1425,11 +1415,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1056258373}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 2
+  parralaxLayer: 2
 --- !u!212 &1056258377
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1485,8 +1474,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1125126470}
   - component: {fileID: 1125126473}
-  - component: {fileID: 1125126472}
   - component: {fileID: 1125126471}
+  - component: {fileID: 1125126472}
   m_Layer: 0
   m_Name: treeSample (3)
   m_TagString: Untagged
@@ -1535,11 +1524,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1125126469}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 2
+  parralaxLayer: 2
 --- !u!212 &1125126473
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1595,8 +1583,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1164430013}
   - component: {fileID: 1164430016}
-  - component: {fileID: 1164430015}
   - component: {fileID: 1164430014}
+  - component: {fileID: 1164430015}
   m_Layer: 0
   m_Name: treeSample (8)
   m_TagString: Untagged
@@ -1645,11 +1633,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1164430012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 3
+  parralaxLayer: 3
 --- !u!212 &1164430016
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1705,8 +1692,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1349643391}
   - component: {fileID: 1349643394}
-  - component: {fileID: 1349643393}
   - component: {fileID: 1349643392}
+  - component: {fileID: 1349643393}
   m_Layer: 0
   m_Name: treeSample (9)
   m_TagString: Untagged
@@ -1755,11 +1742,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1349643390}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 3
+  parralaxLayer: 3
 --- !u!212 &1349643394
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1815,8 +1801,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1354695133}
   - component: {fileID: 1354695136}
-  - component: {fileID: 1354695135}
   - component: {fileID: 1354695134}
+  - component: {fileID: 1354695135}
   m_Layer: 0
   m_Name: treeSample (4)
   m_TagString: Untagged
@@ -1865,11 +1851,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1354695132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 3
+  parralaxLayer: 3
 --- !u!212 &1354695136
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1925,8 +1910,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1421354868}
   - component: {fileID: 1421354871}
-  - component: {fileID: 1421354870}
   - component: {fileID: 1421354869}
+  - component: {fileID: 1421354870}
   m_Layer: 0
   m_Name: treeSample (2)
   m_TagString: Untagged
@@ -1975,11 +1960,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1421354867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 2
+  parralaxLayer: 2
 --- !u!212 &1421354871
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2035,8 +2019,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1637606669}
   - component: {fileID: 1637606668}
-  - component: {fileID: 1637606667}
   - component: {fileID: 1637606666}
+  - component: {fileID: 1637606667}
   m_Layer: 0
   m_Name: treeSample (1)
   m_TagString: Untagged
@@ -2072,11 +2056,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1637606665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 3
+  parralaxLayer: 3
 --- !u!212 &1637606668
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2149,7 +2132,7 @@ GameObject:
   - component: {fileID: 1764987149}
   m_Layer: 0
   m_Name: "Karakt\xE4r"
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2185,7 +2168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b06f94d606200014baa00c08a69b103f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
 --- !u!212 &1764987151
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2254,8 +2236,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1958419650}
   - component: {fileID: 1958419653}
-  - component: {fileID: 1958419652}
   - component: {fileID: 1958419651}
+  - component: {fileID: 1958419652}
   m_Layer: 0
   m_Name: treeSample (6)
   m_TagString: Untagged
@@ -2304,11 +2286,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1958419649}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 3
+  parralaxLayer: 3
 --- !u!212 &1958419653
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2364,8 +2345,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2140576580}
   - component: {fileID: 2140576583}
-  - component: {fileID: 2140576582}
   - component: {fileID: 2140576581}
+  - component: {fileID: 2140576582}
   m_Layer: 0
   m_Name: treeSample (5)
   m_TagString: Untagged
@@ -2414,11 +2395,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2140576579}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b466720233e5649b3918a6d9a7f84b, type: 3}
+  m_Script: {fileID: 11500000, guid: 822bc38203eeac044a617c65b3a058a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  divideSpeedByThis: 2
+  parralaxLayer: 2
 --- !u!212 &2140576583
 SpriteRenderer:
   m_ObjectHideFlags: 0
