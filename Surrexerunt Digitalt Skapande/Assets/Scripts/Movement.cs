@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour {
     public LayerMask characterMask;
     public bool grounded;
 
-     void Start() {
+    void Start() {
         rgbd = this.GetComponent<Rigidbody2D>();
         groundCheck = GameObject.Find("groundCheck").GetComponent<Transform>();
     }
@@ -22,18 +22,12 @@ public class Movement : MonoBehaviour {
         grounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, characterMask);
     }
 
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
+    void Update() {
+        if (Input.GetKey(KeyCode.RightArrow)) {
             xspeed = 5;
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
+        } else if (Input.GetKey(KeyCode.LeftArrow)) {
             xspeed = -5;
-        }
-        else
-        {
+        } else {
             xspeed = 0;
         }
 
@@ -41,10 +35,12 @@ public class Movement : MonoBehaviour {
             jump();
         }
     }
-    
+
     void jump() {
         if (grounded) {
             rgbd.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-        } 
+        }
     }
 }
+
+//Written by: Oskar SU16a
