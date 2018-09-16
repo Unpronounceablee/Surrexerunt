@@ -5,6 +5,8 @@ using UnityEngine;
 /// <summary>
 /// Script for moving the player. 
 /// If you're unsure of how the script works all variables have descriptions next to them and all methods have summaries above them.
+/// 
+/// Written By: Simon Hansson SU16a
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour {
@@ -89,5 +91,3 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 }
-
-//Written By: Simon Hansson SU16a

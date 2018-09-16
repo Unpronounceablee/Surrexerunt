@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Written by: Oskar SU16a
 public class Movement : MonoBehaviour {
 
     Rigidbody2D rgbd;
@@ -42,5 +43,3 @@ public class Movement : MonoBehaviour {
         }
     }
 }
-
-//Written by: Oskar SU16a
