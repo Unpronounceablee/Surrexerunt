@@ -11,7 +11,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour {
     #region Variables
-    Rigidbody2D rb2d;
+    protected Rigidbody2D rb2d;
 
     [Header("Stats")]
     [SerializeField] private float mSpeed;  //Player speed
