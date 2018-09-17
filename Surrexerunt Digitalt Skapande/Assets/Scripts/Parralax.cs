@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Parralax : MonoBehaviour
 {
+    //Written by: [Pontus Mattsson][Su16B]
     private GameObject player;
     [SerializeField]
-    private float parralaxLayer;
-    private float offsetX;
-    private float xDistanceToPlayer;
+    private float parralaxLayer; // Hur långt bak skall objektet ligga? Högre nummer ger långsammare hastighet.
+    private float offsetX; //Hur långt ifrån objektet SKA ligger ifrån spelaren i x-led.
+    private float xDistanceToPlayer; // Hur långt ifrån objektet ligger från spelaren i x-led.
 
     void Start()
     {
@@ -23,9 +24,9 @@ public class Parralax : MonoBehaviour
 
         xDistanceToPlayer = player.transform.position.x - transform.position.x;
 
-        if (xDistanceToPlayer > 10)
+        if (xDistanceToPlayer > 10) //Flytta objektet från höger utanför kameran till vänster utanför kameran, eller reverse.
         {
-            offsetX += 20;
+            offsetX += 20; 
 
         }
         else if (xDistanceToPlayer < -10)
