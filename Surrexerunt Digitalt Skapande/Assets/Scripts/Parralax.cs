@@ -8,17 +8,29 @@ public class Parralax : MonoBehaviour
     [SerializeField]
     private float parralaxLayer;
     private float offsetX;
+    private float xDistanceToPlayer;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         offsetX = player.transform.position.x - transform.position.x;
 
-
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        transform.position = new Vector2(offsetX + player.transform.position.x / parralaxLayer, 0);
+        transform.position = new Vector2(offsetX + player.transform.position.x / parralaxLayer, transform.position.y);
+
+        xDistanceToPlayer = player.transform.position.x - transform.position.x;
+
+        if (xDistanceToPlayer > 10)
+        {
+            offsetX += 20;
+
+        }
+        else if (xDistanceToPlayer < -10)
+        {
+            offsetX -= 20;
+        }
     }
 }
