@@ -11,7 +11,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour {
     #region Variables
-    protected Rigidbody2D rb2d;
+    private Rigidbody2D rb2d;
 
     [Header("Stats")]
     [SerializeField] private float mSpeed;  //Player speed
@@ -26,6 +26,20 @@ public class PlayerMovement : MonoBehaviour {
     private bool willJump;
     #endregion
 
+    #region DashVariables
+
+    [SerializeField] private float dashSpeed; // Dashing speed
+
+    [SerializeField] private float startingDashDuration; // Duration of dash
+    private float dashTime; // Vaiable wich get reduced over time while dashing and gets reset to starting duration after dash ends.
+    private bool hasDashed; // Has the player dashed?
+
+    private Vector3 dashDir;
+
+    private bool willDash;
+
+    #endregion
+
     void Start() {
         rb2d = GetComponent<Rigidbody2D>();
     }
@@ -35,6 +49,10 @@ public class PlayerMovement : MonoBehaviour {
             willJump = true;
             isGrounded = false;
         }
+
+        if (Input.GetButton("Fire1"))
+            willDash = true;
+            
     }
 
     void FixedUpdate() {
@@ -43,6 +61,8 @@ public class PlayerMovement : MonoBehaviour {
         Jump();
 
         Move();
+
+        UseDash();
 
     }
 
@@ -89,5 +109,31 @@ public class PlayerMovement : MonoBehaviour {
             isGrounded = true;
         }
 
+    }
+
+    /* Checks if player has dashed and then saves the direction of the mouse from the player. Dashing becomes true
+     * Dashtime gets reduced until it´s lower than 0, meanwhile the player gets added force towards the mouse.
+    */
+    private void UseDash()
+    {
+        if (!hasDashed && willDash)
+        {
+            Vector3 temp;
+            temp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            dashDir = (temp - transform.position).normalized;
+            willDash = false;
+            hasDashed = true;
+        }
+        else if (hasDashed && dashTime > 0)
+        {
+            dashTime -= Time.deltaTime;
+            rb2d.AddForce(dashDir * dashSpeed, ForceMode2D.Impulse);
+        }
+
+        if (dashTime <= 0)
+        {
+            dashTime = startingDashDuration;
+            rb2d.velocity = new Vector2(0, 0);
+        }
     }
 }
