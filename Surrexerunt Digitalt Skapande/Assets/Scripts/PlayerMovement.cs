@@ -9,7 +9,8 @@ using UnityEngine;
 /// Written By: Simon Hansson SU16a
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
     #region Variables
     private Rigidbody2D rb2d;
 
@@ -27,7 +28,7 @@ public class PlayerMovement : MonoBehaviour {
     #endregion
 
     #region DashVariables
-    [Header ("Dash Variables, allways set dash timer")]
+    [Header("Dash Variables, allways set dash timer")]
     [SerializeField] private float dashSpeed; // Dashing speed
 
     [SerializeField] private float startingDashDuration; // Duration of dash
@@ -43,23 +44,27 @@ public class PlayerMovement : MonoBehaviour {
 
     #endregion
 
-    void Start() {
+    void Start()
+    {
         rb2d = GetComponent<Rigidbody2D>();
     }
 
-    void Update() {
-        if (Input.GetButtonDown("Jump") && isGrounded) {
+    void Update()
+    {
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
             willJump = true;
             isGrounded = false;
         }
 
         if (Input.GetButton("Fire1"))
-            if(allowDash)
+            if (allowDash)
                 willDash = true;
-            
+
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         GroundedChecker();
 
         Jump();
@@ -81,7 +86,8 @@ public class PlayerMovement : MonoBehaviour {
     /// 
     /// Tl;Dr: Moves the player using magic (aka. math).
     /// </summary>
-    private void Move() {
+    private void Move()
+    {
         float x = Input.GetAxisRaw("Horizontal");
         Vector2 movement = new Vector2(x * mSpeed, rb2d.velocity.y);
         rb2d.velocity = movement;
@@ -91,8 +97,10 @@ public class PlayerMovement : MonoBehaviour {
     /// Let's the player jump if the player has pressed the jump key && they're grounded.
     /// This one is pretty straight forward. If not, let me know and I'll clarify what it does.
     /// </summary>
-    private void Jump() {
-        if (willJump && isGrounded) {
+    private void Jump()
+    {
+        if (willJump && isGrounded)
+        {
             rb2d.AddForce(Vector2.up * jVelocity, ForceMode2D.Impulse);
             willJump = false;
         }
@@ -106,11 +114,13 @@ public class PlayerMovement : MonoBehaviour {
     /// 
     /// Tl;Dr: If the overlap circle touches a collider on the ground-layer the player is grounded and will be able to jump.
     /// </summary>
-    private void GroundedChecker() {
+    private void GroundedChecker()
+    {
         isGrounded = false;
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckCircleRadius, groundLayer);
-        if (colliders.Length > 0) {
+        if (colliders.Length > 0)
+        {
             isGrounded = true;
             allowDash = true;
         }
@@ -124,8 +134,10 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (!StartDashTimer && willDash && allowDash)
         {
-            Vector3 temp  = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            dashDir = (temp - transform.position).normalized;
+            Vector3 temp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            dashDir = (temp - transform.position);
+            dashDir.z = 0;
+            dashDir.Normalize();
             willDash = false;
             StartDashTimer = true;
             allowDash = false;
