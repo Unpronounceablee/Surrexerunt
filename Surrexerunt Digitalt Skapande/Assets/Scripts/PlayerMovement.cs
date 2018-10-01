@@ -27,16 +27,19 @@ public class PlayerMovement : MonoBehaviour {
     #endregion
 
     #region DashVariables
-
+    [Header ("Dash Variables, allways set dash timer")]
     [SerializeField] private float dashSpeed; // Dashing speed
 
     [SerializeField] private float startingDashDuration; // Duration of dash
     private float dashTime; // Vaiable wich get reduced over time while dashing and gets reset to starting duration after dash ends.
-    private bool hasDashed; // Has the player dashed?
+    private bool StartDashTimer; // Has the player dashed?
 
     private Vector3 dashDir;
 
     private bool willDash;
+    private bool allowDash;
+
+    [SerializeField] private float keepDashSpeed;
 
     #endregion
 
@@ -51,7 +54,8 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         if (Input.GetButton("Fire1"))
-            willDash = true;
+            if(allowDash)
+                willDash = true;
             
     }
 
@@ -60,7 +64,8 @@ public class PlayerMovement : MonoBehaviour {
 
         Jump();
 
-        Move();
+        if (!StartDashTimer)
+            Move();
 
         UseDash();
 
@@ -107,6 +112,7 @@ public class PlayerMovement : MonoBehaviour {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckCircleRadius, groundLayer);
         if (colliders.Length > 0) {
             isGrounded = true;
+            allowDash = true;
         }
 
     }
@@ -116,15 +122,16 @@ public class PlayerMovement : MonoBehaviour {
     */
     private void UseDash()
     {
-        if (!hasDashed && willDash)
+        if (!StartDashTimer && willDash && allowDash)
         {
-            Vector3 temp;
-            temp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 temp  = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             dashDir = (temp - transform.position).normalized;
             willDash = false;
-            hasDashed = true;
+            StartDashTimer = true;
+            allowDash = false;
+
         }
-        else if (hasDashed && dashTime > 0)
+        else if (StartDashTimer && dashTime > 0)
         {
             dashTime -= Time.deltaTime;
             rb2d.AddForce(dashDir * dashSpeed, ForceMode2D.Impulse);
@@ -132,8 +139,9 @@ public class PlayerMovement : MonoBehaviour {
 
         if (dashTime <= 0)
         {
+            StartDashTimer = false;
             dashTime = startingDashDuration;
-            rb2d.velocity = new Vector2(0, 0);
+            rb2d.velocity *= keepDashSpeed;
         }
     }
 }
