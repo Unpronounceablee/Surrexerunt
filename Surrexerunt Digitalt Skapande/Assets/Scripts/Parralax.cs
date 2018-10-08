@@ -10,6 +10,7 @@ public class Parralax : MonoBehaviour
     private float parralaxLayer; // Hur långt bak skall objektet ligga? Högre nummer ger långsammare hastighet.
     private float offsetX; //Hur långt ifrån objektet SKA ligger ifrån spelaren i x-led.
     private float xDistanceToPlayer; // Hur långt ifrån objektet ligger från spelaren i x-led.
+    [SerializeField] private float resetDistance;
 
     void Start()
     {
@@ -24,14 +25,14 @@ public class Parralax : MonoBehaviour
 
         xDistanceToPlayer = player.transform.position.x - transform.position.x;
 
-        if (xDistanceToPlayer > 10) //Flytta objektet från höger utanför kameran till vänster utanför kameran, eller reverse.
+        if (xDistanceToPlayer > resetDistance) //Flytta objektet från höger utanför kameran till vänster utanför kameran, eller reverse.
         {
-            offsetX += 20; 
+            offsetX += resetDistance * 2;
 
         }
-        else if (xDistanceToPlayer < -10)
+        else if (xDistanceToPlayer < -resetDistance)
         {
-            offsetX -= 20;
+            offsetX -= resetDistance * 2;
         }
     }
 }
