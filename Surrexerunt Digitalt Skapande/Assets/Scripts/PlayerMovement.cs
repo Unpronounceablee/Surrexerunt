@@ -40,7 +40,10 @@ public class PlayerMovement : MonoBehaviour
     private bool willDash;
     private bool allowDash;
 
-    [SerializeField] private float keepDashSpeed;
+    private float dashCDTimer;
+    [SerializeField] private float dashCD;
+
+    [SerializeField] private float keepDashSpeed = 0;
 
     #endregion
 
@@ -122,7 +125,9 @@ public class PlayerMovement : MonoBehaviour
         if (colliders.Length > 0)
         {
             isGrounded = true;
-            allowDash = true;
+
+            if (!StartDashTimer)
+                allowDash = true;
         }
 
     }

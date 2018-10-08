@@ -20,6 +20,6 @@ public class CameraController : MonoBehaviour
     {
         x = player.transform.position.x;
         print("asd");
-        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(player.transform.position.x,transform.position.y,transform.position.z) - new Vector3(0,0, 10)   , ref refer, camera);
+        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(player.transform.position.x,transform.position.y,transform.position.z) , ref refer, camera);
     }
 }
