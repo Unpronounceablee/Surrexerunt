@@ -45,6 +45,11 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float keepDashSpeed = 0;
 
+    [SerializeField] private float slowTimeScale;
+    private bool useSlowDown;
+
+    [SerializeField] private GameObject aimSprite;
+
     #endregion
 
     void Start()
@@ -62,7 +67,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButton("Fire1"))
             if (allowDash)
-                willDash = true;
+                useSlowDown = true;
+
+        UseDash();
 
     }
 
@@ -75,7 +82,8 @@ public class PlayerMovement : MonoBehaviour
         if (!StartDashTimer)
             Move();
 
-        UseDash();
+
+        DashForce();
 
     }
 
@@ -137,28 +145,68 @@ public class PlayerMovement : MonoBehaviour
     */
     private void UseDash()
     {
-        if (!StartDashTimer && willDash && allowDash)
+        if (useSlowDown)
         {
-            Vector3 temp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            dashDir = (temp - transform.position);
-            dashDir.z = 0;
-            dashDir.Normalize();
-            willDash = false;
-            StartDashTimer = true;
-            allowDash = false;
-
-        }
-        else if (StartDashTimer && dashTime > 0)
-        {
-            dashTime -= Time.deltaTime;
-            rb2d.AddForce(dashDir * dashSpeed, ForceMode2D.Impulse);
+            SlowTime();
         }
 
         if (dashTime <= 0)
         {
-            StartDashTimer = false;
-            dashTime = startingDashDuration;
-            rb2d.velocity *= keepDashSpeed;
+            StopDash();
         }
+    }
+
+    private void DashForce()
+    {
+        if (StartDashTimer && dashTime > 0)
+        {
+            rb2d.gravityScale = 0;
+            dashTime -= Time.deltaTime;
+            rb2d.AddForce(dashDir * dashSpeed, ForceMode2D.Impulse);
+        }
+
+    }
+
+    private void SlowTime()
+    {
+        if (Input.GetButton("Fire1"))
+        {
+            Time.timeScale = 1 / slowTimeScale;
+            rb2d.velocity *= 0;
+            GetDashDir();
+            DashAim();
+        }
+
+        else if (!Input.GetButton("Fire1") && !StartDashTimer && allowDash)
+        {
+            Time.timeScale = 1;
+            useSlowDown = false;
+            StartDashTimer = true;
+            allowDash = false;
+
+        }
+            
+    }
+
+    private void StopDash()
+    {
+        StartDashTimer = false;
+        dashTime = startingDashDuration;
+        rb2d.velocity *= keepDashSpeed;
+        rb2d.gravityScale = 4;
+    }
+
+    private void GetDashDir()
+    {
+        Vector3 temp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        dashDir = (temp - transform.position);
+        dashDir.z = 0;
+        dashDir.Normalize();
+
+    }
+
+    private void DashAim()
+    {
+        aimSprite.transform.position = (Camera.main.ScreenToWorldPoint(Input.mousePosition)) - transform.position;
     }
 }
