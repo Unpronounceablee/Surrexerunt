@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Death : MonoBehaviour {
+public class TakeDamage : MonoBehaviour {
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter(Collision collision)
     {
         var hit = collision.gameObject;
-        var health = hit.GetComponent<HealthPoint>();
+        var health = hit.GetComponent<PlayerHealth>();
         if (health != null)
         {
-            health.TakeDamage(3);
+            health.TakeDamage(1);
         }
 
         Destroy(gameObject);
