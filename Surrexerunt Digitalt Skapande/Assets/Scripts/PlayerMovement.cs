@@ -52,9 +52,19 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    #region Animation&SpriteVariables
+
+    private Animator plAnimatior;
+    private SpriteRenderer spRenderer;
+
+    #endregion
+
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        plAnimatior = GetComponent<Animator>();
+        spRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -70,6 +80,10 @@ public class PlayerMovement : MonoBehaviour
                 useSlowDown = true;
 
         UseDash();
+
+        FlipSprite();
+
+        plAnimatior.SetInteger("Direction", (int)Input.GetAxisRaw("Horizontal"));
 
     }
 
@@ -208,5 +222,14 @@ public class PlayerMovement : MonoBehaviour
     private void DashAim()
     {
         aimSprite.transform.position = (Camera.main.ScreenToWorldPoint(Input.mousePosition)) - transform.position;
+    }
+
+    private void FlipSprite()
+    {
+        if ((int)Input.GetAxisRaw("Horizontal") == 1)
+            spRenderer.flipX = false;
+        else if ((int)Input.GetAxisRaw("Horizontal") == -1)
+            spRenderer.flipX = true;
+
     }
 }

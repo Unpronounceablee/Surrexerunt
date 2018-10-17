@@ -8,6 +8,7 @@ public class Parralax : MonoBehaviour
     private GameObject player;
     [SerializeField]
     private float parralaxLayer; // Hur långt bak skall objektet ligga? Högre nummer ger långsammare hastighet.
+    private float layerMultipler = 0.5f;
     private float offsetX; //Hur långt ifrån objektet SKA ligger ifrån spelaren i x-led.
     private float xDistanceToPlayer; // Hur långt ifrån objektet ligger från spelaren i x-led.
     [SerializeField] private float resetDistance;
@@ -21,7 +22,7 @@ public class Parralax : MonoBehaviour
 
     void Update()
     {
-        transform.position = new Vector2(offsetX + player.transform.position.x / parralaxLayer, transform.position.y);
+        transform.position = new Vector2(offsetX + player.transform.position.x / (parralaxLayer * layerMultipler), transform.position.y);
 
         xDistanceToPlayer = player.transform.position.x - transform.position.x;
 
