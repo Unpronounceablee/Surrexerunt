@@ -9,8 +9,7 @@ using UnityEngine;
 /// Written By: Simon Hansson SU16a
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerMovement : MonoBehaviour
-{
+public class PlayerMovement : MonoBehaviour {
     #region Variables
     private Rigidbody2D rb2d;
 
@@ -60,17 +59,14 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
 
-    void Start()
-    {
+    void Start() {
         rb2d = GetComponent<Rigidbody2D>();
         plAnimatior = GetComponent<Animator>();
         spRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
-    {
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
+    void Update() {
+        if (Input.GetButtonDown("Jump") && isGrounded) {
             willJump = true;
             isGrounded = false;
         }
@@ -87,8 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
         GroundedChecker();
 
         Jump();
@@ -111,8 +106,7 @@ public class PlayerMovement : MonoBehaviour
     /// 
     /// Tl;Dr: Moves the player using magic (aka. math).
     /// </summary>
-    private void Move()
-    {
+    private void Move() {
         float x = Input.GetAxisRaw("Horizontal");
         Vector2 movement = new Vector2(x * mSpeed, rb2d.velocity.y);
         rb2d.velocity = movement;
@@ -122,10 +116,8 @@ public class PlayerMovement : MonoBehaviour
     /// Let's the player jump if the player has pressed the jump key && they're grounded.
     /// This one is pretty straight forward. If not, let me know and I'll clarify what it does.
     /// </summary>
-    private void Jump()
-    {
-        if (willJump && isGrounded)
-        {
+    private void Jump() {
+        if (willJump && isGrounded) {
             rb2d.AddForce(Vector2.up * jVelocity, ForceMode2D.Impulse);
             willJump = false;
         }
@@ -139,13 +131,11 @@ public class PlayerMovement : MonoBehaviour
     /// 
     /// Tl;Dr: If the overlap circle touches a collider on the ground-layer the player is grounded and will be able to jump.
     /// </summary>
-    private void GroundedChecker()
-    {
+    private void GroundedChecker() {
         isGrounded = false;
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckCircleRadius, groundLayer);
-        if (colliders.Length > 0)
-        {
+        if (colliders.Length > 0) {
             isGrounded = true;
 
             if (!StartDashTimer)
@@ -157,23 +147,18 @@ public class PlayerMovement : MonoBehaviour
     /* Checks if player has dashed and then saves the direction of the mouse from the player. Dashing becomes true
      * Dashtime gets reduced until it´s lower than 0, meanwhile the player gets added force towards the mouse.
     */
-    private void UseDash()
-    {
-        if (useSlowDown)
-        {
+    private void UseDash() {
+        if (useSlowDown) {
             SlowTime();
         }
 
-        if (dashTime <= 0)
-        {
+        if (dashTime <= 0) {
             StopDash();
         }
     }
 
-    private void DashForce()
-    {
-        if (StartDashTimer && dashTime > 0)
-        {
+    private void DashForce() {
+        if (StartDashTimer && dashTime > 0) {
             rb2d.gravityScale = 0;
             dashTime -= Time.deltaTime;
             rb2d.AddForce(dashDir * dashSpeed, ForceMode2D.Impulse);
@@ -181,37 +166,30 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void SlowTime()
-    {
-        if (Input.GetButton("Fire1"))
-        {
+    private void SlowTime() {
+        if (Input.GetButton("Fire1")) {
             Time.timeScale = 1 / slowTimeScale;
             rb2d.velocity *= 0;
             GetDashDir();
             DashAim();
-        }
-
-        else if (!Input.GetButton("Fire1") && !StartDashTimer && allowDash)
-        {
+        } else if (!Input.GetButton("Fire1") && !StartDashTimer && allowDash) {
             Time.timeScale = 1;
             useSlowDown = false;
             StartDashTimer = true;
             allowDash = false;
 
         }
-            
+
     }
 
-    private void StopDash()
-    {
+    private void StopDash() {
         StartDashTimer = false;
         dashTime = startingDashDuration;
         rb2d.velocity *= keepDashSpeed;
         rb2d.gravityScale = 4;
     }
 
-    private void GetDashDir()
-    {
+    private void GetDashDir() {
         Vector3 temp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         dashDir = (temp - transform.position);
         dashDir.z = 0;
@@ -219,13 +197,11 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void DashAim()
-    {
+    private void DashAim() {
         aimSprite.transform.position = (Camera.main.ScreenToWorldPoint(Input.mousePosition)) - transform.position;
     }
 
-    private void FlipSprite()
-    {
+    private void FlipSprite() {
         if ((int)Input.GetAxisRaw("Horizontal") == 1)
             spRenderer.flipX = false;
         else if ((int)Input.GetAxisRaw("Horizontal") == -1)

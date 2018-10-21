@@ -383,6 +383,7 @@ GameObject:
   - component: {fileID: 1375625520}
   - component: {fileID: 1375625519}
   - component: {fileID: 1375625518}
+  - component: {fileID: 1375625523}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -456,7 +457,10 @@ MonoBehaviour:
   isGrounded: 0
   dashSpeed: 50
   startingDashDuration: 0.05
+  dashCD: 0
   keepDashSpeed: 0
+  slowTimeScale: 0
+  aimSprite: {fileID: 0}
 --- !u!212 &1375625521
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -517,6 +521,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1375625523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1375625517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abca8c5d700f8444da0e0c7f21e157fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultJump: 4
+  lowJump: 6
+  fallSpeed: 6.5
 --- !u!1 &1438719041
 GameObject:
   m_ObjectHideFlags: 0

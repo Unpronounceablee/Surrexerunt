@@ -19,7 +19,6 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         x = player.transform.position.x;
-        print("asd");
         transform.position = Vector3.SmoothDamp(transform.position, new Vector3(x,transform.position.y,transform.position.z) , ref refer, camera);
     }
 }
