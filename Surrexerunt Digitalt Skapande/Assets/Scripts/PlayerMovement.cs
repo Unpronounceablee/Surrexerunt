@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour {
 
         Jump();
 
-        if (!StartDashTimer)
+        if (!StartDashTimer && !Input.GetButton("Fire1"))
             Move();
 
 
@@ -198,7 +198,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void DashAim() {
-        aimSprite.transform.position = (Camera.main.ScreenToWorldPoint(Input.mousePosition)) - transform.position;
+        aimSprite.transform.position = (Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 
     private void FlipSprite() {
