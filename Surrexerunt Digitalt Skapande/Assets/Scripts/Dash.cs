@@ -5,14 +5,20 @@ using UnityEngine;
 public class Dash : PlayerMovement
 =======
 
+public class Dash : MonoBehaviour
 >>>>>>> d4068296107a45544128d63e5b964de9f60410b4
 {
-    [SerializeField]
-    private float dashSpeed;
-    private float dashTime;
-    [SerializeField]
-    private float startDashTime;
-    private int direction;
+    [SerializeField] private float dashSpeed;
+
+    [SerializeField] private float startDashTime; // Dash duration
+    private float dashTime; // Copies startDashTime and gets reset to it when duration ends
+    private bool startTimer; // Start dash and begin timer for when it ends
+
+    private Vector3 dashDir; // Dash direction
+
+    private PlayerMovement plMove;
+    private Rigidbody2D rb2d;
+
 
     // Use this for initialization
     void Start()
@@ -23,26 +29,35 @@ public class Dash : PlayerMovement
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        UseDash();
+    }
+
+    private void UseDash()
+    {
+        if (Input.GetButton("Fire1") && !startTimer)
+        {
+            Vector3 sp;
+            sp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            dashDir = (sp - transform.position).normalized;
+            startTimer = true;
+
+        }
+        else if (startTimer)
+        {
+            print(dashTime);
+            dashTime -= Time.deltaTime;
+            rb2d.AddForce(dashDir * dashSpeed, ForceMode2D.Impulse);
+        }
 
         if (dashTime <= 0)
         {
-            direction = 0;
+            print("asd");
+
+            startTimer = false;
             dashTime = startDashTime;
-            rb2d.velocity = Vector2.zero;
-        }
-        else
-        {
-            dashTime -= Time.deltaTime;
-
-            if (Input.GetButton("Fire1"))
-            {
-                Vector3 mousePos;
-                mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-                rb2d.velocity = mousePos * dashSpeed;
-            }
-
+            rb2d.velocity = new Vector2(0,0);
         }
     }
 }
