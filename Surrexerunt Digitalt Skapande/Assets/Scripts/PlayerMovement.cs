@@ -11,7 +11,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour {
     #region Variables
-    protected Rigidbody2D rb2d;
+    private Rigidbody2D rb2d;
 
     [Header("Stats")]
     [SerializeField] private float mSpeed;  //Player speed
@@ -26,8 +26,43 @@ public class PlayerMovement : MonoBehaviour {
     private bool willJump;
     #endregion
 
+    #region DashVariables
+    [Header("Dash Variables, allways set dash timer")]
+    [SerializeField] private float dashSpeed; // Dashing speed
+
+    [SerializeField] private float startingDashDuration; // Duration of dash
+    private float dashTime; // Vaiable wich get reduced over time while dashing and gets reset to starting duration after dash ends.
+    private bool StartDashTimer; // Has the player dashed?
+
+    private Vector3 dashDir;
+
+    private bool willDash;
+    private bool allowDash;
+
+    private float dashCDTimer;
+    [SerializeField] private float dashCD;
+
+    [SerializeField] private float keepDashSpeed = 0;
+
+    [SerializeField] private float slowTimeScale;
+    private bool useSlowDown;
+
+    [SerializeField] private GameObject aimSprite;
+
+    #endregion
+
+    #region Animation&SpriteVariables
+
+    private Animator plAnimatior;
+    private SpriteRenderer spRenderer;
+
+    #endregion
+
+
     void Start() {
         rb2d = GetComponent<Rigidbody2D>();
+        plAnimatior = GetComponent<Animator>();
+        spRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update() {
@@ -35,6 +70,17 @@ public class PlayerMovement : MonoBehaviour {
             willJump = true;
             isGrounded = false;
         }
+
+        if (Input.GetButton("Fire1"))
+            if (allowDash)
+                useSlowDown = true;
+
+        UseDash();
+
+        FlipSprite();
+
+        plAnimatior.SetInteger("Direction", (int)Input.GetAxisRaw("Horizontal"));
+
     }
 
     void FixedUpdate() {
@@ -42,7 +88,11 @@ public class PlayerMovement : MonoBehaviour {
 
         Jump();
 
-        Move();
+        if (!StartDashTimer && !Input.GetButton("Fire1"))
+            Move();
+
+
+        DashForce();
 
     }
 
@@ -87,7 +137,75 @@ public class PlayerMovement : MonoBehaviour {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckCircleRadius, groundLayer);
         if (colliders.Length > 0) {
             isGrounded = true;
+
+            if (!StartDashTimer)
+                allowDash = true;
         }
+
+    }
+
+    /* Checks if player has dashed and then saves the direction of the mouse from the player. Dashing becomes true
+     * Dashtime gets reduced until it´s lower than 0, meanwhile the player gets added force towards the mouse.
+    */
+    private void UseDash() {
+        if (useSlowDown) {
+            SlowTime();
+        }
+
+        if (dashTime <= 0) {
+            StopDash();
+        }
+    }
+
+    private void DashForce() {
+        if (StartDashTimer && dashTime > 0) {
+            rb2d.gravityScale = 0;
+            dashTime -= Time.deltaTime;
+            rb2d.AddForce(dashDir * dashSpeed, ForceMode2D.Impulse);
+        }
+
+    }
+
+    private void SlowTime() {
+        if (Input.GetButton("Fire1")) {
+            Time.timeScale = 1 / slowTimeScale;
+            rb2d.velocity *= 0;
+            GetDashDir();
+            DashAim();
+        } else if (!Input.GetButton("Fire1") && !StartDashTimer && allowDash) {
+            Time.timeScale = 1;
+            useSlowDown = false;
+            StartDashTimer = true;
+            allowDash = false;
+
+        }
+
+    }
+
+    private void StopDash() {
+        StartDashTimer = false;
+        dashTime = startingDashDuration;
+        rb2d.velocity *= keepDashSpeed;
+        rb2d.gravityScale = 4;
+    }
+
+    private void GetDashDir() {
+        Vector3 temp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        dashDir = (temp - transform.position);
+        dashDir.z = 0;
+        dashDir.Normalize();
+
+    }
+
+    private void DashAim() {
+        aimSprite.transform.position = (Camera.main.ScreenToWorldPoint(Input.mousePosition));
+    }
+
+    private void FlipSprite() {
+        if ((int)Input.GetAxisRaw("Horizontal") == 1)
+            spRenderer.flipX = false;
+        else if ((int)Input.GetAxisRaw("Horizontal") == -1)
+            spRenderer.flipX = true;
 
     }
 }
