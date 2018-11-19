@@ -1482,7 +1482,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1764987148}
   cameraOffset: 3
-  camera: 0.2
+  defaultSmoothing: 0.2
+  smootingWhileDashing: 0
 --- !u!1 &845244416
 GameObject:
   m_ObjectHideFlags: 0
@@ -3700,18 +3701,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0.067982316, y: 0.0131902695}
+  m_Offset: {x: 0.0009049773, y: -0.00020742416}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5, y: 2.5}
+    oldSize: {x: 1.6666666, y: 1.6666666}
     newSize: {x: 1.86, y: 2.71}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.2658484, y: 1.8371449}
+  m_Size: {x: 1.5414125, y: 1.2744436}
   m_EdgeRadius: 0
 --- !u!212 &1764987151
 SpriteRenderer:
@@ -3795,7 +3796,9 @@ MonoBehaviour:
   groundCheckCircleRadius: 0
   isGrounded: 1
   dashSpeed: 10
+  dashSmooting: 1000
   startingDashDuration: 0.15
+  startDashTimer: 0
   dashCD: 0.2
   keepDashSpeed: 0
   slowTimeScale: 10

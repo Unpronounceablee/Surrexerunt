@@ -31,9 +31,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Dash Variables, allways set dash timer")]
     [SerializeField] private float dashSpeed; // Dashing speed
 
+    [SerializeField] private float dashSmooting; // Dashing smoothing
+    Vector3 refer = Vector3.zero;
+
     [SerializeField] private float startingDashDuration; // Duration of dash
     private float dashTime; // Vaiable wich get reduced over time while dashing and gets reset to starting duration after dash ends.
-    private bool StartDashTimer; // Has the player dashed?
+    public bool startDashTimer; // Has the player dashed?
 
     private Vector3 dashDir;
 
@@ -87,7 +90,8 @@ public class PlayerMovement : MonoBehaviour
 
         FlipSprite();
 
-        plAnimatior.SetInteger("Direction", (int)Input.GetAxisRaw("Horizontal"));
+        plAnimatior.SetFloat("Direction", Input.GetAxisRaw("Horizontal"));
+        plAnimatior.SetInteger("Idle", (int)Input.GetAxisRaw("Horizontal"));
 
     }
 
@@ -97,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
 
         Jump();
 
-        if (!StartDashTimer && !dash)
+        if (!startDashTimer && !dash)
             Move();
 
 
@@ -152,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
 
-            if (!StartDashTimer)
+            if (!startDashTimer)
                 allowDash = true;
         }
 
@@ -176,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void DashForce()
     {
-        if (StartDashTimer && dashTime > 0)
+        if (startDashTimer && dashTime > 0)
         {
             rb2d.gravityScale = 0;
             dashTime -= Time.deltaTime;
@@ -194,11 +198,11 @@ public class PlayerMovement : MonoBehaviour
             GetDashDir();
             DashAim();
         }
-        else if (!dash && !StartDashTimer && allowDash)
+        else if (!dash && !startDashTimer && allowDash)
         {
             Time.timeScale = 1;
             useSlowDown = false;
-            StartDashTimer = true;
+            startDashTimer = true;
             allowDash = false;
 
         }
@@ -207,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void StopDash()
     {
-        StartDashTimer = false;
+        startDashTimer = false;
         dashTime = startingDashDuration;
         rb2d.velocity *= keepDashSpeed;
         rb2d.gravityScale = 4;
@@ -215,20 +219,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void GetDashDir()
     {
-        dashDir = new Vector3(Input.GetAxis("RightHorizontal"), Input.GetAxis("RightVertical") * -1);
+        dashDir = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        //dashDir = Vector3.SmoothDamp(transform.position, dashDir * dashSpeed + transform.position, ref refer, dashSmooting).normalized;
 
     }
 
     private void DashAim()
     {
-        aimSprite.transform.position = dashDir + transform.position;
+        aimSprite.transform.position = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) + transform.position;
     }
 
     private void FlipSprite()
     {
-        if ((int)Input.GetAxis("Horizontal") > 0)
+        if (0 < Input.GetAxis("Horizontal"))
             spRenderer.flipX = false;
-        else if ((int)Input.GetAxis("Horizontal") < 0)
+        else if (Input.GetAxis("Horizontal") < 0)
             spRenderer.flipX = true;
 
     }

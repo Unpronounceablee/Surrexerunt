@@ -1,12 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-<<<<<<< HEAD
-public class Dash : PlayerMovement
-=======
 
 public class Dash : MonoBehaviour
->>>>>>> d4068296107a45544128d63e5b964de9f60410b4
 {
     [SerializeField] private float dashSpeed;
 
