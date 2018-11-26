@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
     Vector3 refer = Vector3.zero;
     private float smoothing;
     [SerializeField] private float defaultSmoothing;
-    [SerializeField] private float smootingWhileDashing;
+    //[SerializeField] private float smootingWhileDashing;
 
 
     void Start()
@@ -32,7 +32,7 @@ public class CameraController : MonoBehaviour
     {
         offset = player.transform.position.x + controlOffset * cameraOffset;
 
-        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(offset, transform.position.y, transform.position.z), ref refer, smoothing);
+        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(offset, transform.position.y, transform.position.z), ref refer, smoothing * Time.deltaTime);
     }
 
     void RoudedOffAxis()
@@ -45,8 +45,8 @@ public class CameraController : MonoBehaviour
 
     void OnPlayerDash()
     {
-        if (player.GetComponent<PlayerMovement>().startDashTimer)
-            smoothing = smootingWhileDashing;
+        if (player.GetComponent<PlayerMovement>().dashState == PlayerMovement.DashState.Dashing)
+            smoothing = defaultSmoothing * player.GetComponent<PlayerMovement>().slowTimeScale;
         else
             smoothing = defaultSmoothing;
     }

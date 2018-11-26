@@ -11,6 +11,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
+    public enum DashState { Aiming, Dashing, Cooldown, CanDash }
     #region Variables
     private Rigidbody2D rb2d;
 
@@ -35,25 +36,21 @@ public class PlayerMovement : MonoBehaviour
     Vector3 refer = Vector3.zero;
 
     [SerializeField] private float startingDashDuration; // Duration of dash
-    private float dashTime; // Vaiable wich get reduced over time while dashing and gets reset to starting duration after dash ends.
-    public bool startDashTimer; // Has the player dashed?
 
     private Vector3 dashDir;
+    public DashState dashState = DashState.CanDash;
+    private bool AllowDash { get { return isGrounded && dashState == DashState.CanDash; } }
+    public bool CanMove { get { return dashState == DashState.CanDash || dashState == DashState.Cooldown; } }
 
-    private bool willDash;
-    private bool allowDash;
-
-    private float dashCDTimer;
-    [SerializeField] private float dashCD;
+    public float dashCooldown = 0.15f;
 
     [SerializeField] private float keepDashSpeed = 0;
 
-    [SerializeField] private float slowTimeScale;
-    private bool useSlowDown;
+    [SerializeField] public float slowTimeScale;
 
     [SerializeField] private GameObject aimSprite;
 
-    private bool dash;
+    private bool dashButton;
 
     #endregion
 
@@ -75,7 +72,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        dash = Input.GetButton("ControllerRightBumper");
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -83,10 +79,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
 
-        if (dash && allowDash)
-            useSlowDown = true;
-
-        UseDash();
+        AimDash();
 
         FlipSprite();
 
@@ -101,12 +94,8 @@ public class PlayerMovement : MonoBehaviour
 
         Jump();
 
-        if (!startDashTimer && !dash)
+        if (CanMove)
             Move();
-
-
-        DashForce();
-
     }
 
     /// <summary>
@@ -155,76 +144,84 @@ public class PlayerMovement : MonoBehaviour
         if (colliders.Length > 0)
         {
             isGrounded = true;
-
-            if (!startDashTimer)
-                allowDash = true;
         }
 
     }
 
-    /* Checks if player has dashed and then saves the direction of the mouse from the player. Dashing becomes true
-     * Dashtime gets reduced until it´s lower than 0, meanwhile the player gets added force towards the mouse.
-    */
-    private void UseDash()
+    private IEnumerator Dash()
     {
-        if (useSlowDown)
-        {
-            SlowTime();
-        }
-
-        if (dashTime <= 0)
-        {
-            StopDash();
-        }
+        StartDash();
+        yield return new WaitForSeconds(startingDashDuration);
+        StopDash();
     }
 
-    private void DashForce()
+    private void StartDash()
     {
-        if (startDashTimer && dashTime > 0)
-        {
-            rb2d.gravityScale = 0;
-            dashTime -= Time.deltaTime;
-            rb2d.AddForce(dashDir * dashSpeed, ForceMode2D.Impulse);
-        }
-
-    }
-
-    private void SlowTime()
-    {
-        if (dash)
-        {
-            Time.timeScale = 1 / slowTimeScale;
-            rb2d.velocity *= 0;
-            GetDashDir();
-            DashAim();
-        }
-        else if (!dash && !startDashTimer && allowDash)
-        {
-            Time.timeScale = 1;
-            useSlowDown = false;
-            startDashTimer = true;
-            allowDash = false;
-
-        }
-
+        Time.timeScale = 1;
+        rb2d.gravityScale = 0;
+        rb2d.velocity = dashDir * dashSpeed;
     }
 
     private void StopDash()
     {
-        startDashTimer = false;
-        dashTime = startingDashDuration;
-        rb2d.velocity *= keepDashSpeed;
         rb2d.gravityScale = 4;
+        rb2d.velocity *= keepDashSpeed;
+        dashState = DashState.Cooldown;
+        StartCoroutine(DashCooldown());
     }
 
-    private void GetDashDir()
+    private IEnumerator DashCooldown()
+    {
+        yield return new WaitForSeconds(dashCooldown);
+        dashState = DashState.CanDash;
+    }
+
+    private void AimDash()
+    {
+        dashButton = Input.GetButton("ControllerRightBumper");
+
+        switch (dashState)
+        {
+            case DashState.Aiming:
+                SlowCharacter();
+                Aim();
+
+                if (!dashButton)
+                {
+                    dashState = DashState.Dashing;
+                    StartCoroutine(Dash());
+                }
+
+                break;
+            case DashState.Dashing:
+
+                break;
+
+            case DashState.Cooldown:
+
+                break;
+            case DashState.CanDash:
+                if (dashButton)
+                {
+                    dashState = DashState.Aiming;
+                }
+                break;
+        }
+    }
+
+    private void SlowCharacter()
+    {
+        Time.timeScale = 1 / slowTimeScale;
+        rb2d.velocity *= 0;
+    }
+
+    private void Aim()
     {
         dashDir = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        //dashDir = Vector3.SmoothDamp(transform.position, dashDir * dashSpeed + transform.position, ref refer, dashSmooting).normalized;
-
+        UpdateAimArrow();
     }
 
-    private void DashAim()
+    private void UpdateAimArrow()
     {
         aimSprite.transform.position = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) + transform.position;
     }

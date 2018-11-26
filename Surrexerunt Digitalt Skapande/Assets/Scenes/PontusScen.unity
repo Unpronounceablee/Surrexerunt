@@ -1482,8 +1482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1764987148}
   cameraOffset: 3
-  defaultSmoothing: 0.2
-  smootingWhileDashing: 0
+  defaultSmoothing: 25
 --- !u!1 &845244416
 GameObject:
   m_ObjectHideFlags: 0
@@ -3767,7 +3766,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1764987148}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abca8c5d700f8444da0e0c7f21e157fc, type: 3}
   m_Name: 
@@ -3795,11 +3794,11 @@ MonoBehaviour:
   groundCheck: {fileID: 1768623458}
   groundCheckCircleRadius: 0
   isGrounded: 1
-  dashSpeed: 10
-  dashSmooting: 1000
+  dashSpeed: 25
+  dashSmooting: 0.3
   startingDashDuration: 0.15
-  startDashTimer: 0
-  dashCD: 0.2
+  dashState: 3
+  dashCooldown: 0.5
   keepDashSpeed: 0
   slowTimeScale: 10
   aimSprite: {fileID: 1921298990}

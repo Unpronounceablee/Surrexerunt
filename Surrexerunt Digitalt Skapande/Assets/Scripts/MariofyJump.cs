@@ -22,7 +22,7 @@ public class MariofyJump : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if (rb2d.velocity.y > 0 && !Input.GetButton("Jump")) {  //If the player releases the jump button while the y-velocity is greater than 0 (during jump)
+        if (rb2d.velocity.y > 0.05f && !Input.GetButton("Jump")) {  //If the player releases the jump button while the y-velocity is greater than 0 (during jump)
             rb2d.gravityScale = lowJump;    //Set the gravity scale higher in order to make the chrachter not reach as high
         } else if (rb2d.velocity.y < 0) {   //If the y-velocity is less than 0 (falling)
             rb2d.gravityScale = fallSpeed;  //Set the gravity scale higher to make the character fall faster (juice)
