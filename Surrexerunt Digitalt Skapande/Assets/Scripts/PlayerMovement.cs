@@ -16,13 +16,11 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb2d;
 
     [Header("Stats")]
-    [SerializeField]
-    private float mSpeed;  //Player speed
+    [SerializeField] private float mSpeed;  //Player speed
     [SerializeField] private float jVelocity;   //Player jump height
 
     [Header("Ground Check Components")]
-    [SerializeField]
-    private LayerMask groundLayer; //What layer(s) is ground?
+    [SerializeField] private LayerMask groundLayer; //What layer(s) is ground?
     [SerializeField] private Transform groundCheck; //From where should the code check if the player is grounded?
     [SerializeField] [Range(0f, 1f)] private float groundCheckCircleRadius; //Radius of the overlap circle (see line 84) that checks whether or not the player is  grounded.
     [SerializeField] private bool isGrounded;   //Is the player grounded?
