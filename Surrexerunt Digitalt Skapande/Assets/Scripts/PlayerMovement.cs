@@ -16,11 +16,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb2d;
 
     [Header("Stats")]
-    [SerializeField] private float mSpeed;  //Player speed
+    [SerializeField]
+    private float mSpeed;  //Player speed
     [SerializeField] private float jVelocity;   //Player jump height
 
     [Header("Ground Check Components")]
-    [SerializeField] private LayerMask groundLayer; //What layer(s) is ground?
+    [SerializeField]
+    private LayerMask groundLayer; //What layer(s) is ground?
     [SerializeField] private Transform groundCheck; //From where should the code check if the player is grounded?
     [SerializeField] [Range(0f, 1f)] private float groundCheckCircleRadius; //Radius of the overlap circle (see line 84) that checks whether or not the player is  grounded.
     [SerializeField] private bool isGrounded;   //Is the player grounded?
@@ -30,7 +32,8 @@ public class PlayerMovement : MonoBehaviour
 
     #region DashVariables
     [Header("Dash Variables, allways set dash timer")]
-    [SerializeField] private float dashSpeed; // Dashing speed
+    [SerializeField]
+    private float dashSpeed; // Dashing speed
 
     [SerializeField] private float dashSmooting; // Dashing smoothing
     Vector3 refer = Vector3.zero;
@@ -64,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+
         rb2d = GetComponent<Rigidbody2D>();
         plAnimatior = GetComponent<Animator>();
         spRenderer = GetComponent<SpriteRenderer>();
@@ -155,6 +159,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void StartDash()
     {
+        GetComponent<MariofyJump>().enabled = false;
         Time.timeScale = 1;
         rb2d.gravityScale = 0;
         rb2d.velocity = dashDir * dashSpeed;
@@ -165,6 +170,7 @@ public class PlayerMovement : MonoBehaviour
         rb2d.gravityScale = 4;
         rb2d.velocity *= keepDashSpeed;
         dashState = DashState.Cooldown;
+        GetComponent<MariofyJump>().enabled = true;
         StartCoroutine(DashCooldown());
     }
 
