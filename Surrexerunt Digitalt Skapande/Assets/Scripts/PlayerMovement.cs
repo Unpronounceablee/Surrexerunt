@@ -83,9 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
         FlipSprite();
 
-        plAnimatior.SetFloat("Direction", Input.GetAxisRaw("Horizontal"));
-        plAnimatior.SetInteger("Idle", (int)Input.GetAxisRaw("Horizontal"));
-
+        SetAnimatiorVariables();
     }
 
     void FixedUpdate()
@@ -232,6 +230,17 @@ public class PlayerMovement : MonoBehaviour
             spRenderer.flipX = false;
         else if (Input.GetAxis("Horizontal") < 0)
             spRenderer.flipX = true;
+
+    }
+
+    private void SetAnimatiorVariables()
+    {
+        plAnimatior.SetFloat("DirectionX", Input.GetAxisRaw("Horizontal"));
+        plAnimatior.SetFloat("DirectionY", Mathf.Asin(Input.GetAxisRaw("Horizontal")) * Mathf.Rad2Deg);
+        plAnimatior.SetInteger("Idle", (int)Input.GetAxisRaw("Horizontal"));
+        plAnimatior.SetBool("Grounded", isGrounded);
+        plAnimatior.SetFloat("VelocityDown", rb2d.velocity.y);
+
 
     }
 }
