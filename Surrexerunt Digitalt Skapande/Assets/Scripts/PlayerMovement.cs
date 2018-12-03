@@ -246,6 +246,7 @@ public class PlayerMovement : MonoBehaviour
         plAnimatior.SetInteger("Idle", (int)Input.GetAxisRaw("Horizontal"));
         plAnimatior.SetBool("Grounded", isGrounded);
         plAnimatior.SetFloat("VelocityDown", rb2d.velocity.y);
+        plAnimatior.SetBool("DashButton", dashButton);
 
 
     }
