@@ -4,14 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
-<<<<<<< HEAD
+
     //Oscar Wadmark (su16b)
-    public int startingHealth = 3;
-    private int currentHealth;
-    public Slider healthSlider;
+   
   
-    public Image damageImage;
-=======
+   
     
     //Written by: Oscar Wadmark (su16b)     Edited by: Simon Hansson SU16a
     [SerializeField] private int startingHealth = 100;
@@ -20,18 +17,18 @@ public class PlayerHealth : MonoBehaviour {
     [SerializeField] private float flashSpeed = 5f;
     [SerializeField] private Image flashImage;    //Vad gör denna?
     [SerializeField] private Image damageImage;
->>>>>>> 41ba883fee9a7f63f7325bfb0f5d095886f3be60
+
 
     Animator anim;
     public AudioSource playerAudio;
     PlayerMovement playerMovement;
 
     bool isDead;
-<<<<<<< HEAD
+
     
-=======
-    bool damaged;   //Vad gör denna?
->>>>>>> 41ba883fee9a7f63f7325bfb0f5d095886f3be60
+
+    
+
    
 
 	void Awake ()

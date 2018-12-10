@@ -11,7 +11,7 @@ public class TakeDamage : MonoBehaviour {
         var health = hit.GetComponent<PlayerHealth>();
         if (health != null)
         {
-            print("damage");
+
             health.TakeDamage(1);
         }
 
