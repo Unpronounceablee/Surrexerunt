@@ -5,25 +5,24 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
     //Oscar Wadmark (su16b)
-    public int startingHealth = 100;
-    public int currentHealth;
+    public int startingHealth = 3;
+    private int currentHealth;
     public Slider healthSlider;
-    public float flashSpeed = 5f;
-    public Image flashImage;
+  
     public Image damageImage;
 
     Animator anim;
-    AudioSource playerAudio;
+    public AudioSource playerAudio;
     PlayerMovement playerMovement;
 
     bool isDead;
-    bool damaged;
+    
    
 
 	// Use this for initialization
 	void Awake ()
     {
-        anim = GetComponent<Animator>();
+        
         playerAudio = GetComponent<AudioSource>();
        
         currentHealth = startingHealth;
@@ -37,14 +36,13 @@ public class PlayerHealth : MonoBehaviour {
 
     public void TakeDamage (int amount)
     {
-        damaged = true;
+        
+        
 
         currentHealth -= amount;
 
         healthSlider.value = currentHealth;
-
-        playerAudio.Play();
-
+        
         if(currentHealth <= 0 && !isDead)
         {
             Death ();
@@ -55,10 +53,8 @@ public class PlayerHealth : MonoBehaviour {
     {
         isDead = true;
 
-        anim.SetTrigger("Död");
-
-        //playerAudio.clip = deathClip;
-        playerAudio.Play();
+        
+        
 
         playerMovement.enabled = false;
     }
