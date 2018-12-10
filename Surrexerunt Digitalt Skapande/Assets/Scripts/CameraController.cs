@@ -22,7 +22,6 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        print(Input.GetAxis("Horizontal"));
         RoudedOffAxis();
         MoveCamera();
         OnPlayerDash();
@@ -32,7 +31,8 @@ public class CameraController : MonoBehaviour
     {
         offset = player.transform.position.x + controlOffset * cameraOffset;
 
-        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(offset, transform.position.y, transform.position.z), ref refer, smoothing * Time.deltaTime);
+        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(offset, transform.position.y, 
+            transform.position.z), ref refer, smoothing * Time.deltaTime);
     }
 
     void RoudedOffAxis()
