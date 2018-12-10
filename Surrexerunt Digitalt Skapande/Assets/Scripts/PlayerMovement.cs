@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-
+    #region DashFunctions
     private IEnumerator Dash()
     {
         StartDash();
@@ -241,11 +241,12 @@ public class PlayerMovement : MonoBehaviour
     {
         plAnimatior.SetFloat("DirectionX", Input.GetAxisRaw("Horizontal"));
         plAnimatior.SetFloat("DirectionY", Mathf.Asin(Input.GetAxisRaw("Horizontal")) * Mathf.Rad2Deg);
-        plAnimatior.SetInteger("Idle", (int)Input.GetAxisRaw("Horizontal"));
         plAnimatior.SetBool("Grounded", isGrounded);
         plAnimatior.SetFloat("VelocityDown", rb2d.velocity.y);
         plAnimatior.SetBool("DashButton", dashButton);
 
 
     }
+    #endregion
+
 }
