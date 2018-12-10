@@ -6,20 +6,48 @@ public class CameraController : MonoBehaviour
     //Written by Oscar Wadmark(su16b)
     public GameObject player;
     public int cameraOffset;
-    private Vector3 offset;
-    private float x;
+    private float controlOffset;
+    private float offset;
     Vector3 refer = Vector3.zero;
-    [SerializeField] private float camera;
+    private float smoothing;
+    [SerializeField] private float defaultSmoothing;
+    //[SerializeField] private float smootingWhileDashing;
+
 
     void Start()
     {
-        offset = transform.position - player.transform.position ;
+        smoothing = defaultSmoothing;
     }
 
 
     void Update()
     {
-        x = player.transform.position.x + Input.GetAxis("Horizontal") * cameraOffset;
-        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(x,transform.position.y,transform.position.z) , ref refer, camera);
+        print(Input.GetAxis("Horizontal"));
+        RoudedOffAxis();
+        MoveCamera();
+        OnPlayerDash();
+    }
+
+    void MoveCamera()
+    {
+        offset = player.transform.position.x + controlOffset * cameraOffset;
+
+        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(offset, transform.position.y, transform.position.z), ref refer, smoothing * Time.deltaTime);
+    }
+
+    void RoudedOffAxis()
+    {
+        if (Input.GetAxis("Horizontal") < 0)
+            controlOffset = -1;
+        else if (Input.GetAxis("Horizontal") > 0)
+            controlOffset = 1;
+    }
+
+    void OnPlayerDash()
+    {
+        if (player.GetComponent<PlayerMovement>().dashState == PlayerMovement.DashState.Dashing)
+            smoothing = defaultSmoothing * player.GetComponent<PlayerMovement>().slowTimeScale;
+        else
+            smoothing = defaultSmoothing;
     }
 }
