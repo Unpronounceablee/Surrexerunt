@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class TakeDamage : MonoBehaviour {
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
+        print("hit");
         var hit = collision.gameObject;
         var health = hit.GetComponent<PlayerHealth>();
         if (health != null)
         {
+
             health.TakeDamage(1);
         }
 
