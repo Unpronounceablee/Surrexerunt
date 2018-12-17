@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 //Sebastian Olsson SU16b
 public class LoadScene : MonoBehaviour {
+    public string scene;
     void Start()
     {
 
@@ -9,6 +10,6 @@ public class LoadScene : MonoBehaviour {
     }
     public void LoadOnClick()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene(scene);
     }
 }

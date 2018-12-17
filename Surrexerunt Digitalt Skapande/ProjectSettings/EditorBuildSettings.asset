@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PontusScen.unity
     guid: 0acadd9403bfd7946b5229f490ee3b8e
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 3f57c81244b830d4cb22808cd61f55e9
   m_configObjects: {}
