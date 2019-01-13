@@ -11,7 +11,7 @@ public class BossTeleport : MonoBehaviour {
     private float cooldownTime;
     private int randomPos;
 
-	void Start () {
+    void Start () {
         cooldownTime = defaultCooldown;
         randomPos = Random.Range(0, tpPos.Length);
 	}
