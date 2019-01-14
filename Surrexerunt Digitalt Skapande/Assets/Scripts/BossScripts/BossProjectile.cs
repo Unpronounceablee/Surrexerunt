@@ -17,7 +17,7 @@ public class BossProjectile : MonoBehaviour {
 
     void Start() {
         transform.position = sceneCenter.position;
-        cooldownTime = 2f;
+        cooldownTime = defaultCooldown;
         Vector3 centre = transform.position;
         for (int i = 0; i < projectileAmount; i++) {
             int location = i * locationMultiplier;
