@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#region Attributes
+[RequireComponent(typeof(BossTeleport))]
+[RequireComponent(typeof(BossVine))]
+[RequireComponent(typeof(BossProjectile))]
+#endregion
 public class BossManager : MonoBehaviour {
 
     [Tooltip("Set equal to number of attacks")]
