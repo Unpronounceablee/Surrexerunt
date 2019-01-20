@@ -6,15 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class NextScene : MonoBehaviour {
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
+    public string scene;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SceneManager.LoadSceneAsync("MovementTest");
+        SceneManager.LoadSceneAsync(scene);
 
     }
 
