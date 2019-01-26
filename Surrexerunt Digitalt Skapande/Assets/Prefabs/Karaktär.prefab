@@ -144,8 +144,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   groundCheck: {fileID: 4353138103630196}
-  groundCheckCircleRadius: 0
-  isGrounded: 1
+  groundCheckCircleRadius: 0.2
+  isGrounded: 0
   dashSpeed: 25
   dashSmooting: 0.3
   startingDashDuration: 0.15

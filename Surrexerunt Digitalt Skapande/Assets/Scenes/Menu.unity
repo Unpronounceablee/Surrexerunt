@@ -1092,7 +1092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6bf5e4e8e8274848833b19d51f3e4c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: PontusScen
+  scene: PontusBana
 --- !u!1 &1663958815
 GameObject:
   m_ObjectHideFlags: 0
