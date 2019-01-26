@@ -34,7 +34,6 @@ public class Respawn : MonoBehaviour {
 
     private void RespawnPlayer()
     {
-        Camera.main.GetComponent<CameraController>().smoothing = 0;
         player.transform.position = checkpoints[0].transform.position;
     }
 

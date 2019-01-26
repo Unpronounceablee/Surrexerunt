@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
     private float controlOffset;
     private float offset;
     Vector3 refer = Vector3.zero;
-    public float smoothing;
+    private float smoothing;
     [SerializeField] private float defaultSmoothing;
     [SerializeField] private float smootingReturn;
 
