@@ -226,6 +226,7 @@ public class PlayerMovement : MonoBehaviour
     private void UpdateAimArrow()
     {
         aimSprite.transform.position = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) + transform.position;
+        aimSprite.transform.rotation = Quaternion.Euler(transform.position - aimSprite.transform.position);
     }
 
     private void FlipSprite()
