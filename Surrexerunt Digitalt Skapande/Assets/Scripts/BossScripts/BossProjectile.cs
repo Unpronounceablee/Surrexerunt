@@ -5,7 +5,6 @@ using UnityEngine;
 public class BossProjectile : MonoBehaviour {
 
     [Tooltip("How many projectiles?")] public int projectileAmount;
-    [Tooltip("360 / projectileAmount")] public int locationMultiplier;
     [Tooltip("How far from character?")] public float circleRadius;
     [Tooltip("Put projectile here")] public GameObject projectilePrefab;
     [Tooltip("Boss Position")]public Transform sceneCenter;
@@ -14,9 +13,11 @@ public class BossProjectile : MonoBehaviour {
 
     public float defaultCooldown;
     private float cooldownTime;
+    private int locationMultiplier;
 
     void Start() {
         transform.position = sceneCenter.position;
+        locationMultiplier = 360 / projectileAmount;
         cooldownTime = 2f;
         Vector3 centre = transform.position;
         for (int i = 0; i < projectileAmount; i++) {
