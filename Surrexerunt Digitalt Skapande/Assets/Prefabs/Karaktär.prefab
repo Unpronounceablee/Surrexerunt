@@ -90,7 +90,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 1338558831991488}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 4335c5b5874223d43819b9f70caa4ff9, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -154,6 +154,7 @@ MonoBehaviour:
   keepDashSpeed: 0
   slowTimeScale: 10
   aimSprite: {fileID: 0}
+  scissorOffset: 2
 --- !u!114 &114531608590000908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -246,6 +247,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.96, y: -3.44}
+  m_AnchoredPosition: {x: 0, y: 2.23}
   m_SizeDelta: {x: 2.5, y: 2.5}
   m_Pivot: {x: 0.5, y: 0.5}

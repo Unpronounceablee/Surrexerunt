@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public float slowTimeScale;
 
     [SerializeField] private GameObject aimSprite;
+    [SerializeField] private float scissorOffset = 2;
 
     private bool dashButton;
 
@@ -153,10 +154,12 @@ public class PlayerMovement : MonoBehaviour
         StartDash();
         yield return new WaitForSeconds(startingDashDuration);
         StopDash();
+
     }
 
     private void StartDash()
     {
+        aimSprite.GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<MariofyJump>().enabled = false;
         Time.timeScale = 1;
         rb2d.gravityScale = 0;
@@ -225,8 +228,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateAimArrow()
     {
-        aimSprite.transform.position = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) + transform.position;
-        aimSprite.transform.rotation = Quaternion.Euler(transform.position - aimSprite.transform.position);
+        aimSprite.GetComponent<SpriteRenderer>().enabled = true;
+        aimSprite.transform.position = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized * scissorOffset + transform.position;
+        Vector3 vectorToPlayer = transform.position - aimSprite.transform.position;
+        float stickAngle = Mathf.Atan2(vectorToPlayer.y, vectorToPlayer.x) * Mathf.Rad2Deg;
+        aimSprite.transform.rotation = Quaternion.Euler(new Vector3(0, 0, stickAngle));
+
     }
 
     private void FlipSprite()

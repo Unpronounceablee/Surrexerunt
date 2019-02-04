@@ -101,6 +101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  cameraOffset: 2
+  cameraOffset: 1
   defaultSmoothing: 5
   smootingReturn: 1.02
