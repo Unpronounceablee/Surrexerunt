@@ -5,19 +5,19 @@ using UnityEngine;
 public class BossProjectile : MonoBehaviour {
 
     [Tooltip("How many projectiles?")] public int projectileAmount;
-    [Tooltip("360 / projectileAmount")] public int locationMultiplier;
     [Tooltip("How far from character?")] public float circleRadius;
     [Tooltip("Put projectile here")] public GameObject projectilePrefab;
     [Tooltip("Boss Position")]public Transform sceneCenter;
 
     public List<GameObject> projectiles = new List<GameObject>();
 
-    public float defaultCooldown;
-    private float cooldownTime;
+    public float cooldown;
+    private float effectiveCooldown;
+    private int locationMultiplier;
 
-    void Start() {
+    void OnEnable() {
         transform.position = sceneCenter.position;
-        cooldownTime = 2f;
+        locationMultiplier = 360 / projectileAmount;
         Vector3 centre = transform.position;
         for (int i = 0; i < projectileAmount; i++) {
             int location = i * locationMultiplier;
@@ -28,15 +28,15 @@ public class BossProjectile : MonoBehaviour {
     }
 
     void Update() {
-        if (cooldownTime <= 0) {
+        if (effectiveCooldown <= 0) {
             if (projectiles.Count > 0) {
                 int chosenOne = Random.Range(0, projectiles.Count);
                 projectiles[chosenOne].GetComponent<ProjectileManager>().activate = true;
                 projectiles.Remove(projectiles[chosenOne]);
-                cooldownTime = defaultCooldown;
+                effectiveCooldown = cooldown;
             }
         } else {
-            cooldownTime -= Time.deltaTime;
+            effectiveCooldown -= Time.deltaTime;
         }
     }
 
@@ -47,5 +47,11 @@ public class BossProjectile : MonoBehaviour {
         pos.y = centre.y + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
         pos.z = centre.z;
         return pos;
+    }
+
+    private void OnDisable() {
+        foreach (GameObject BossProjectile in projectiles) {
+            Destroy(BossProjectile);
+        }
     }
 }

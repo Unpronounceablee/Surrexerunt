@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212611455884975954}
   - component: {fileID: 61333937045129172}
   - component: {fileID: 61815169678134200}
+  - component: {fileID: 114101948871070074}
   m_Layer: 0
   m_Name: Thorny Vine V2
   m_TagString: Vine
@@ -148,6 +149,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.17357808}
   m_EdgeRadius: 0
+--- !u!114 &114101948871070074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1157133016539106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e0f31ba6d5920b42a58bf3c3e323d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vineDeath: {fileID: 0}
+  target: {x: 0, y: 0}
 --- !u!212 &212611455884975954
 SpriteRenderer:
   m_ObjectHideFlags: 1

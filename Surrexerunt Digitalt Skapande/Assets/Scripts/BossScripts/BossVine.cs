@@ -5,16 +5,22 @@ using UnityEngine;
 public class BossVine : MonoBehaviour {
 
     public GameObject[] vinePrefab;
-    public Transform[] vinePos;
-    public Transform bossPos;
+    public Transform vineStart, bossPos;
+    public float cooldown;
+    private float effectiveCooldown;
 
-	void Start () {
+	void OnEnable () {
         transform.position = bossPos.position;
-
-        for (int i = 0; i < vinePos.Length; i++)
-        {
-            Instantiate(vinePrefab[i], vinePos[i].position, Quaternion.identity);
-        }
 	}
-	
+
+    void Update() {
+        if (effectiveCooldown <= 0) {
+            int randomVine = Random.Range(0, vinePrefab.Length);
+            Instantiate(vinePrefab[randomVine], vineStart.position, Quaternion.identity);
+            effectiveCooldown = cooldown;
+        } else {
+            effectiveCooldown -= Time.deltaTime;
+        }
+    }
+
 }
