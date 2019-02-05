@@ -770,6 +770,7 @@ GameObject:
   - component: {fileID: 1573839693}
   - component: {fileID: 1573839697}
   - component: {fileID: 1573839698}
+  - component: {fileID: 1573839699}
   - component: {fileID: 1573839692}
   m_Layer: 0
   m_Name: Boss
@@ -831,7 +832,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1573839691}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e987786665975db43a54d76eaa0d5136, type: 3}
   m_Name: 
@@ -921,7 +922,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1573839691}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02a578ac29514eb4cb1bb2e9c2a23ed7, type: 3}
   m_Name: 
@@ -929,6 +930,24 @@ MonoBehaviour:
   projectileAmount: 10
   circleRadius: 1.5
   projectilePrefab: {fileID: 1470063432047128, guid: 9d2177b356c0de1489b021c973bce0f1,
+    type: 2}
+  sceneCenter: {fileID: 624495756}
+  projectiles: []
+  defaultCooldown: 1
+--- !u!114 &1573839699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1573839691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a678c798d5bb77438e5dabc15f95237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileAmount: 10
+  circleRadius: 1.5
+  projectilePrefab: {fileID: 1210435328019752, guid: b72b85ad5db69464ea40ebe1ea38f660,
     type: 2}
   sceneCenter: {fileID: 624495756}
   projectiles: []

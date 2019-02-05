@@ -9,7 +9,7 @@ public class BossVine : MonoBehaviour {
     public float cooldown;
     private float effectiveCooldown;
 
-	void Start () {
+	void OnEnable () {
         transform.position = bossPos.position;
 	}
 
