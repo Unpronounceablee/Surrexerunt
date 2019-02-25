@@ -2511,7 +2511,7 @@ GameObject:
   - component: {fileID: 854452446}
   - component: {fileID: 854452445}
   m_Layer: 5
-  m_Name: Image
+  m_Name: FadeToBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7071,6 +7071,11 @@ Prefab:
       propertyPath: checkpoints.Array.data[0]
       value: 
       objectReference: {fileID: 1679836337}
+    - target: {fileID: 114564583816303508, guid: f9a1dc1c9575a7d4c8424d1c759f07c8,
+        type: 2}
+      propertyPath: fadeSpeed
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9a1dc1c9575a7d4c8424d1c759f07c8, type: 2}
   m_IsPrefabAsset: 0
@@ -7471,7 +7476,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1679836337}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 2.21, z: -0.1734375}
+  m_LocalPosition: {x: -0.06, y: -1.6, z: -0.1734375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8544,6 +8549,21 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 515690487}
+    - target: {fileID: 114573221887071140, guid: 8e7aa998444e12b46b9adaf9df1c8c53,
+        type: 2}
+      propertyPath: defaultSmoothing
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114573221887071140, guid: 8e7aa998444e12b46b9adaf9df1c8c53,
+        type: 2}
+      propertyPath: shakeSpeed
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114573221887071140, guid: 8e7aa998444e12b46b9adaf9df1c8c53,
+        type: 2}
+      propertyPath: shakeAmmount
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e7aa998444e12b46b9adaf9df1c8c53, type: 2}
   m_IsPrefabAsset: 0

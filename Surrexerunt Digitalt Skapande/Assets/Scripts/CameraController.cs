@@ -13,6 +13,9 @@ public class CameraController : MonoBehaviour
     private float smoothing;
     [SerializeField] private float defaultSmoothing;
     [SerializeField] private float smootingReturn;
+    private bool aiming;
+    [SerializeField] float shakeSpeed;
+    [SerializeField] float shakeAmmount;
 
     //[SerializeField] private float smootingWhileDashing;
 
@@ -28,14 +31,19 @@ public class CameraController : MonoBehaviour
         WhenToSmoth();
         RoudedOffAxis();
         MoveCamera();
+        //OnPlayerDashAim();
     }
 
     void MoveCamera()
     {
         offset = player.transform.position.x + controlOffset * cameraOffset;
 
-        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(offset, transform.position.y, 
-            transform.position.z), ref refer, smoothing * Time.deltaTime);
+        if (!aiming)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(offset, transform.position.y, 
+                transform.position.z), ref refer, smoothing * Time.deltaTime);
+
+        }
     }
 
     void RoudedOffAxis()
@@ -71,11 +79,32 @@ public class CameraController : MonoBehaviour
             smoothing = defaultSmoothing;
     }
 
+    void OnPlayerDashAim()
+    {
+        if (player.GetComponent<PlayerMovement>().dashState == PlayerMovement.DashState.Aiming)
+        {
+            aiming = true;
+            CameraShake();
+        }
+        else
+        {
+            aiming = false;
+        }
+
+    }
+
     void Restart()
     {
         if (Input.GetButton("Back"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+    }
+
+    void CameraShake()
+    {
+        //transform.position = new Vector3(Mathf.Sin(Time.time * shakeSpeed) * shakeAmmount + offset, 0, transform.position.z);
+        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(Mathf.Sin(Time.time * shakeSpeed) * shakeAmmount + offset, 0, transform.position.z), 
+            ref refer, smoothing * Time.deltaTime);
     }
 }
