@@ -10,10 +10,13 @@ public class BossVine : MonoBehaviour {
     private float effectiveCooldown;
 
 	void OnEnable () {
-        transform.position = bossPos.position;
-	}
+        transform.position = Vector2.MoveTowards(transform.position, bossPos.position, 80f * Time.deltaTime);
+    }
 
     void Update() {
+        if (Vector2.Distance(transform.position, bossPos.position) > 0.1f)
+            MoveToPosition();
+
         if (effectiveCooldown <= 0) {
             int randomVine = Random.Range(0, vinePrefab.Length);
             Instantiate(vinePrefab[randomVine], vineStart.position, Quaternion.identity);
@@ -23,4 +26,7 @@ public class BossVine : MonoBehaviour {
         }
     }
 
+    void MoveToPosition() {
+        transform.position = Vector2.MoveTowards(transform.position, bossPos.position, 60f * Time.deltaTime);
+    }
 }

@@ -23,7 +23,7 @@ public class BossPulse : MonoBehaviour {
         for (int i = 0; i < projectileAmount; i++) {
             int location = i * locationMultiplier;
             Vector3 pos = CircleMath(centre, circleRadius, location);
-            Quaternion rot = Quaternion.FromToRotation(Vector3.up, centre - pos);
+            Quaternion rot = Quaternion.FromToRotation(Vector3.down, centre - pos);
             projectiles.Add(Instantiate(projectilePrefab, pos, rot));
         }
     }
