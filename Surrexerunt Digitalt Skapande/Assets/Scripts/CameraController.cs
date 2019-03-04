@@ -4,18 +4,21 @@ using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
-    //Written by Oscar Wadmark(su16b)
+    //Written by Oscar Wadmark(su16b) and Pontus Mattsson(Su16B)
     public GameObject player;
-    public int cameraOffset;
+    private float cameraOffset;
     private float controlOffset;
     private float offset;
     Vector3 refer = Vector3.zero;
-    private float smoothing;
-    [SerializeField] private float defaultSmoothing;
+    public float smoothing;
+    [SerializeField] public float defaultSmoothing;
     [SerializeField] private float smootingReturn;
     private bool aiming;
     [SerializeField] float shakeSpeed;
     [SerializeField] float shakeAmmount;
+    [SerializeField] private float maxAimDur;
+    private float aimTimePassed;
+
 
     //[SerializeField] private float smootingWhileDashing;
 
@@ -28,22 +31,21 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        print(aiming);
         WhenToSmoth();
         RoudedOffAxis();
         MoveCamera();
-        //OnPlayerDashAim();
+        OnPlayerDashAim();
     }
 
     void MoveCamera()
     {
-        offset = player.transform.position.x + controlOffset * cameraOffset;
+        offset = player.transform.position.x + controlOffset + cameraOffset;
+        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(offset, transform.position.y, 
+            transform.position.z), ref refer, smoothing * Time.deltaTime);
 
-        if (!aiming)
-        {
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(offset, transform.position.y, 
-                transform.position.z), ref refer, smoothing * Time.deltaTime);
 
-        }
+
     }
 
     void RoudedOffAxis()
@@ -66,8 +68,10 @@ public class CameraController : MonoBehaviour
         }
         else if (smoothing > 1)
         {
-            smoothing = smoothing / smootingReturn;
+            smoothing = smoothing / (defaultSmoothing / 10);
         }
+
+
 
     }
 
@@ -84,10 +88,11 @@ public class CameraController : MonoBehaviour
         if (player.GetComponent<PlayerMovement>().dashState == PlayerMovement.DashState.Aiming)
         {
             aiming = true;
-            CameraShake();
+            StartCoroutine(CameraShake());
         }
         else
         {
+            cameraOffset = 0;
             aiming = false;
         }
 
@@ -101,10 +106,29 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    void CameraShake()
+
+    private IEnumerator CameraShake()
     {
-        //transform.position = new Vector3(Mathf.Sin(Time.time * shakeSpeed) * shakeAmmount + offset, 0, transform.position.z);
-        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(Mathf.Sin(Time.time * shakeSpeed) * shakeAmmount + offset, 0, transform.position.z), 
-            ref refer, smoothing * Time.deltaTime);
+        while (aiming)
+        {
+            aimTimePassed += Time.deltaTime;
+            cameraOffset = (Random.Range(-1, 1) * aimTimePassed / 100);
+
+            if (aimTimePassed >= maxAimDur)
+            {
+                Knockback();
+            }
+
+            yield return false;
+        }
+        aimTimePassed = 0;
+
+    }
+
+    private void Knockback()
+    {
+        player.GetComponent<PlayerMovement>().dashState = PlayerMovement.DashState.Knockback;
+
+
     }
 }

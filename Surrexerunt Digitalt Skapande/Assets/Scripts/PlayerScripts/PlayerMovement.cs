@@ -11,7 +11,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    public enum DashState { Aiming, Dashing, Cooldown, CanDash }
+    public enum DashState { Aiming, Dashing, Cooldown, CanDash, Knockback }
     #region Variables
     private Rigidbody2D rb2d;
 
@@ -195,6 +195,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     dashState = DashState.Dashing;
                     StartCoroutine(Dash());
+                    
                 }
 
                 break;
@@ -211,6 +212,14 @@ public class PlayerMovement : MonoBehaviour
                     dashState = DashState.Aiming;
                 }
                 break;
+
+            case DashState.Knockback:
+                rb2d.AddForce(new Vector2(10, 0), ForceMode2D.Impulse);
+                Time.timeScale = 1;
+                dashState = DashState.Cooldown;
+
+                break;
+
         }
     }
 
@@ -238,10 +247,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void FlipSprite()
     {
+
         if (0 < Input.GetAxis("Horizontal"))
+        {
             spRenderer.flipX = false;
+            gameObject.GetComponent<CapsuleCollider2D>().offset = new Vector2(-0.15f, 0);
+        }
         else if (Input.GetAxis("Horizontal") < 0)
+        {
             spRenderer.flipX = true;
+            gameObject.GetComponent<CapsuleCollider2D>().offset = new Vector2(0.15f, 0);
+
+        }
 
     }
 

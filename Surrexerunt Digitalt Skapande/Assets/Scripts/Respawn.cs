@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -33,7 +34,18 @@ public class Respawn : MonoBehaviour
 
     private void RespawnPlayer()
     {
+        Camera.main.GetComponent<CameraController>().enabled = false;
         player.transform.position = checkpoints[0].transform.position;
+        SnapToPlayer();
+        Camera.main.GetComponent<CameraController>().enabled = true;
+
+
+    }
+
+    private void SnapToPlayer()
+    {
+        Camera.main.transform.position += new Vector3(0, player.transform.position.x, 0);
+
     }
 
     private void RestartLevel()
