@@ -6,13 +6,13 @@ public class BossTeleport : MonoBehaviour {
 
     public Transform[] tpPos;
     public float speed;
-    public float defaultCooldown;
+    public float cooldown;
 
-    private float cooldownTime;
+    private float effectiveCooldown;
     private int randomPos;
 
     void OnEnable () {
-        cooldownTime = defaultCooldown;
+        effectiveCooldown = cooldown;
         randomPos = Random.Range(0, tpPos.Length);
 	}
 	
@@ -20,11 +20,11 @@ public class BossTeleport : MonoBehaviour {
         transform.position = Vector2.MoveTowards(transform.position, tpPos[randomPos].position, speed * Time.deltaTime);
 
         if (Vector2.Distance(transform.position, tpPos[randomPos].position) < 0.1f) {
-            if (cooldownTime <= 0) {
+            if (effectiveCooldown <= 0) {
                 randomPos = Random.Range(0, tpPos.Length);
-                cooldownTime = defaultCooldown;
+                effectiveCooldown = cooldown;
             } else {
-                cooldownTime -= Time.deltaTime;
+                effectiveCooldown -= Time.deltaTime;
             }
         }
 	}

@@ -9,6 +9,9 @@ TagManager:
   - Projectile
   - Boss
   - vineDeath
+  - bossTP
+  - sceneCenter
+  - bossStartPos
   layers:
   - Default
   - TransparentFX
