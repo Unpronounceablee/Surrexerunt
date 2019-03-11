@@ -11,7 +11,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    public enum DashState { Aiming, Dashing, Cooldown, CanDash, Knockback }
+    public enum DashState { Aiming, Dashing, Cooldown, CanDash, Knockback, CantMove}
     #region Variables
     private Rigidbody2D rb2d;
 
@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region DashVariables
-    [Header("Dash Variables, allways set dash timer")]
+    [Header("Dash Variables, always set dash timer")]
     [SerializeField]
     private float dashSpeed; // Dashing speed
 
@@ -51,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private GameObject aimSprite;
     [SerializeField] private float scissorOffset = 2;
+
+    [SerializeField] private float knockback;
 
     private bool dashButton;
 
@@ -148,7 +150,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
     #region DashFunctions
+
     private IEnumerator Dash()
     {
         StartDash();
@@ -175,10 +179,31 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(DashCooldown());
     }
 
+
     private IEnumerator DashCooldown()
     {
         yield return new WaitForSeconds(dashCooldown);
         dashState = DashState.CanDash;
+    }
+
+    private void BeginKnockback()
+    {
+        aimSprite.GetComponent<SpriteRenderer>().enabled = false;
+        Time.timeScale = 1;
+        rb2d.AddForce(new Vector2(-knockback * Camera.main.GetComponent<CameraController>().controlOffset, 3), ForceMode2D.Impulse);
+        dashState = DashState.CantMove;
+
+        StartCoroutine(Knockback());
+    }
+
+    private IEnumerator Knockback()
+    {
+
+        yield return new WaitForSeconds(0.4f);
+        dashState = DashState.Cooldown;
+        StartCoroutine(DashCooldown());
+
+
     }
 
     private void AimDash()
@@ -214,9 +239,10 @@ public class PlayerMovement : MonoBehaviour
                 break;
 
             case DashState.Knockback:
-                rb2d.AddForce(new Vector2(10, 0), ForceMode2D.Impulse);
-                Time.timeScale = 1;
-                dashState = DashState.Cooldown;
+                BeginKnockback();
+
+                break;
+            case DashState.CantMove:
 
                 break;
 
@@ -251,12 +277,12 @@ public class PlayerMovement : MonoBehaviour
         if (0 < Input.GetAxis("Horizontal"))
         {
             spRenderer.flipX = false;
-            gameObject.GetComponent<CapsuleCollider2D>().offset = new Vector2(-0.15f, 0);
+            gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-0.15f, 0);
         }
         else if (Input.GetAxis("Horizontal") < 0)
         {
             spRenderer.flipX = true;
-            gameObject.GetComponent<CapsuleCollider2D>().offset = new Vector2(0.15f, 0);
+            gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0.15f, 0);
 
         }
 

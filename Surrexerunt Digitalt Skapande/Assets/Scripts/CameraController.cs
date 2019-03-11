@@ -7,17 +7,17 @@ public class CameraController : MonoBehaviour
     //Written by Oscar Wadmark(su16b) and Pontus Mattsson(Su16B)
     public GameObject player;
     private float cameraOffset;
-    private float controlOffset;
+    public float controlOffset;
     private float offset;
     Vector3 refer = Vector3.zero;
     public float smoothing;
     [SerializeField] public float defaultSmoothing;
     [SerializeField] private float smootingReturn;
     private bool aiming;
-    [SerializeField] float shakeSpeed;
     [SerializeField] float shakeAmmount;
     [SerializeField] private float maxAimDur;
     private float aimTimePassed;
+    private bool runOnce;
 
 
     //[SerializeField] private float smootingWhileDashing;
@@ -26,16 +26,18 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         smoothing = defaultSmoothing;
+        runOnce = true;
     }
 
 
     void Update()
     {
-        print(aiming);
+
         WhenToSmoth();
         RoudedOffAxis();
         MoveCamera();
         OnPlayerDashAim();
+        print(aimTimePassed);
     }
 
     void MoveCamera()
@@ -88,7 +90,11 @@ public class CameraController : MonoBehaviour
         if (player.GetComponent<PlayerMovement>().dashState == PlayerMovement.DashState.Aiming)
         {
             aiming = true;
-            StartCoroutine(CameraShake());
+            if (runOnce)
+            {
+                StartCoroutine(CameraShake());
+
+            }
         }
         else
         {
@@ -109,10 +115,11 @@ public class CameraController : MonoBehaviour
 
     private IEnumerator CameraShake()
     {
+        runOnce = false;
         while (aiming)
         {
-            aimTimePassed += Time.deltaTime;
-            cameraOffset = (Random.Range(-1, 1) * aimTimePassed / 100);
+            aimTimePassed += Time.deltaTime * 10;
+            cameraOffset = (Random.Range(-1, 1) * (aimTimePassed) * shakeAmmount / (maxAimDur * 10));
 
             if (aimTimePassed >= maxAimDur)
             {
@@ -122,6 +129,7 @@ public class CameraController : MonoBehaviour
             yield return false;
         }
         aimTimePassed = 0;
+        runOnce = true;
 
     }
 

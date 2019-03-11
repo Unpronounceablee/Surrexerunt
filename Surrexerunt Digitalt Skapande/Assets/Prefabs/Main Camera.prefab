@@ -200,6 +200,6 @@ MonoBehaviour:
   smoothing: 0
   defaultSmoothing: 11
   smootingReturn: 1.1
-  shakeSpeed: 10000
-  shakeAmmount: 0.1
+  shakeSpeed: 10
+  shakeAmmount: 1
   maxAimDur: 2
