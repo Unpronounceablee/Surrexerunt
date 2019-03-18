@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer; //What layer(s) is ground?
     [SerializeField] private Transform groundCheck; //From where should the code check if the player is grounded?
     [SerializeField] [Range(0f, 1f)] private float groundCheckCircleRadius; //Radius of the overlap circle (see line 84) that checks whether or not the player is  grounded.
-    [SerializeField] private bool isGrounded;   //Is the player grounded?
+    [SerializeField] public bool isGrounded;   //Is the player grounded?
 
     private bool willJump;
     #endregion
@@ -277,12 +277,12 @@ public class PlayerMovement : MonoBehaviour
         if (0 < Input.GetAxis("Horizontal"))
         {
             spRenderer.flipX = false;
-            gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-0.15f, 0);
+            gameObject.GetComponent<CapsuleCollider2D>().offset = new Vector2(-0.15f, 0);
         }
         else if (Input.GetAxis("Horizontal") < 0)
         {
             spRenderer.flipX = true;
-            gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0.15f, 0);
+            gameObject.GetComponent<CapsuleCollider2D>().offset = new Vector2(0.15f, 0);
 
         }
 
@@ -300,4 +300,8 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
+    public void DoubleJump() {
+        rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
+        rb2d.AddForce(Vector2.up * jVelocity, ForceMode2D.Impulse);
+    }
 }

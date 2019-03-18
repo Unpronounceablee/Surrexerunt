@@ -37,7 +37,7 @@ public class CameraController : MonoBehaviour
         RoudedOffAxis();
         MoveCamera();
         OnPlayerDashAim();
-        print(aimTimePassed);
+        //print(aimTimePassed);
     }
 
     void MoveCamera()
