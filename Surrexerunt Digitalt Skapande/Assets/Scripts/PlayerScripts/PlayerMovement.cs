@@ -277,12 +277,12 @@ public class PlayerMovement : MonoBehaviour
         if (0 < Input.GetAxis("Horizontal"))
         {
             spRenderer.flipX = false;
-            gameObject.GetComponent<CapsuleCollider2D>().offset = new Vector2(-0.15f, 0);
+            gameObject.GetComponent<Collider2D>().offset = new Vector2(-0.15f, 0);
         }
         else if (Input.GetAxis("Horizontal") < 0)
         {
             spRenderer.flipX = true;
-            gameObject.GetComponent<CapsuleCollider2D>().offset = new Vector2(0.15f, 0);
+            gameObject.GetComponent<Collider2D>().offset = new Vector2(0.15f, 0);
 
         }
 
