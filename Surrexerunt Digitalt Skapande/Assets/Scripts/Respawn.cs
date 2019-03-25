@@ -11,6 +11,7 @@ public class Respawn : MonoBehaviour
     public GameObject player;
     public int maxLives;
     private int lives;
+    private int currentCheckpoint;
     public GameObject[] checkpoints;
     public int respawnDepth;
     private Image blackImage;
@@ -35,7 +36,7 @@ public class Respawn : MonoBehaviour
     private void RespawnPlayer()
     {
         Camera.main.GetComponent<CameraController>().enabled = false;
-        player.transform.position = checkpoints[0].transform.position;
+        player.transform.position = checkpoints[currentCheckpoint].transform.position;
         SnapToPlayer();
         Camera.main.GetComponent<CameraController>().enabled = true;
 
@@ -44,7 +45,7 @@ public class Respawn : MonoBehaviour
 
     private void SnapToPlayer()
     {
-        Camera.main.transform.position += new Vector3(0, player.transform.position.x, 0);
+        Camera.main.transform.position += new Vector3(player.transform.position.x, 0, 0);
 
     }
 
@@ -87,8 +88,13 @@ public class Respawn : MonoBehaviour
             blackImage.color += new Color(0, 0, 0, Time.deltaTime * fadeSpeed * -1);
             yield return false;
         }
+    }
 
-
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.tag == "Checkpoint") {
+            currentCheckpoint++;
+            other.gameObject.SetActive(false);
+        }
     }
 
 }
