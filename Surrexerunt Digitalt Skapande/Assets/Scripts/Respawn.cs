@@ -29,7 +29,7 @@ public class Respawn : MonoBehaviour
     {
         player = gameObject;
         lives = maxLives;
-        //blackImage = GameObject.Find("FadeToBlack").GetComponent<Image>();
+        blackImage = GameObject.Find("FadeToBlack").GetComponent<Image>();
     }
 
     private void RespawnPlayer()
