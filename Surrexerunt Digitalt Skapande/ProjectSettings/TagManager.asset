@@ -12,6 +12,7 @@ TagManager:
   - bossTP
   - sceneCenter
   - bossStartPos
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
