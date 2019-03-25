@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float scissorOffset = 2;
 
     [SerializeField] private float knockback;
+    //[SerializeField] private float cantMoveDur;
 
     private bool dashButton;
 
@@ -198,8 +199,14 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Knockback()
     {
+        while (!isGrounded)
+        {
+            plAnimatior.Play("Damaged");
 
-        yield return new WaitForSeconds(0.4f);
+            yield return true;
+        }
+
+        //yield return new WaitForSeconds(cantMoveDur);
         dashState = DashState.Cooldown;
         StartCoroutine(DashCooldown());
 
