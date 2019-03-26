@@ -870,7 +870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileAmount: 10
   circleRadius: 0.05
-  projectilePrefab: {fileID: 1210435328019752, guid: b72b85ad5db69464ea40ebe1ea38f660,
+  projectilePrefab: {fileID: 1134893538352756, guid: d9e95b51a71ca924c8be1521d930c533,
     type: 2}
   sceneCenter: {fileID: 1786047174}
   projectiles: []
@@ -886,7 +886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c8375469ba3c44088a5a33d1bba90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 1210435328019752, guid: b72b85ad5db69464ea40ebe1ea38f660,
+  projectilePrefab: {fileID: 1134893538352756, guid: d9e95b51a71ca924c8be1521d930c533,
     type: 2}
   sceneCenter: {fileID: 1786047174}
   gun: {fileID: 109792593}
