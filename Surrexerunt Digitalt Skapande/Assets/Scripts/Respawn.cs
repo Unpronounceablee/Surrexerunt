@@ -92,8 +92,8 @@ public class Respawn : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Checkpoint") {
-            currentCheckpoint++;
             other.gameObject.SetActive(false);
+            currentCheckpoint++;
         }
     }
 
