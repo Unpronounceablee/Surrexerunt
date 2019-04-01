@@ -7208,6 +7208,10 @@ Prefab:
       propertyPath: knockback
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4312430772422152, guid: f9a1dc1c9575a7d4c8424d1c759f07c8, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 70776936811810854, guid: f9a1dc1c9575a7d4c8424d1c759f07c8, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: f9a1dc1c9575a7d4c8424d1c759f07c8, type: 2}
@@ -8682,21 +8686,6 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 515690487}
-    - target: {fileID: 114573221887071140, guid: 8e7aa998444e12b46b9adaf9df1c8c53,
-        type: 2}
-      propertyPath: shakeAmmount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82249949715664674, guid: 8e7aa998444e12b46b9adaf9df1c8c53,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82249949715664674, guid: 8e7aa998444e12b46b9adaf9df1c8c53,
-        type: 2}
-      propertyPath: Mute
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e7aa998444e12b46b9adaf9df1c8c53, type: 2}
   m_IsPrefabAsset: 0

@@ -36,7 +36,8 @@ public class SimpleEnemy : MonoBehaviour {
     {
         if (player.GetComponent<PlayerMovement>().dashState == PlayerMovement.DashState.Dashing)
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            GetComponent<Animator>().Play("EnemyDead");
         }
         else
         {
