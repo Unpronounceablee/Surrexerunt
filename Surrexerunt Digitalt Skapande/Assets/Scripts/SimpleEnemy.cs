@@ -105,9 +105,9 @@ public class SimpleEnemy : MonoBehaviour
     private void Parts()
     {
         transform.GetChild(0).gameObject.SetActive(true);
-        transform.GetChild(0).GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-1, 1), 1).normalized * 3, ForceMode2D.Impulse);
+        transform.GetChild(0).GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-1f, 1), 1f).normalized * 3, ForceMode2D.Impulse);
         transform.GetChild(1).gameObject.SetActive(true);
-        transform.GetChild(1).GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-1, 1), 1).normalized * 3, ForceMode2D.Impulse);
+        transform.GetChild(1).GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-1f, 1), 1f).normalized * 3, ForceMode2D.Impulse);
 
     }
 }
