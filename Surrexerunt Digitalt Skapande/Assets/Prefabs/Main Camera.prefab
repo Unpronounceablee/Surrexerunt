@@ -197,9 +197,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  controlOffset: 0
   smoothing: 0
   defaultSmoothing: 11
   smootingReturn: 1.1
-  shakeSpeed: 10
   shakeAmmount: 1
   maxAimDur: 2

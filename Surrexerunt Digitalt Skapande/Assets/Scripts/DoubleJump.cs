@@ -16,6 +16,7 @@ public class DoubleJump : MonoBehaviour {
     private void OnTriggerStay2D(Collider2D other) {
         if (other.tag == "Player" && used == false) {
             if (Input.GetButtonDown("Jump")) {
+                other.GetComponent<PlayerMovement>().isGrounded = true;
                 other.GetComponent<PlayerMovement>().DoubleJump();
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<Collider2D>().enabled = false;

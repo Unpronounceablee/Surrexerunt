@@ -11,6 +11,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
+    public enum DashState { Aiming, Dashing, Cooldown, CanDash, Knockback, CantMove}
     #region Variables
     private Rigidbody2D rb2d;
 
@@ -28,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region DashVariables
-    public enum DashState { Aiming, Dashing, Cooldown, CanDash, Knockback, CantMove}
     [Header("Dash Variables, always set dash timer")]
     [SerializeField]
     private float dashSpeed; // Dashing speed
@@ -310,6 +310,5 @@ public class PlayerMovement : MonoBehaviour
     public void DoubleJump() {
         rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
         rb2d.AddForce(Vector2.up * jVelocity, ForceMode2D.Impulse);
-        willJump = false;
     }
 }
