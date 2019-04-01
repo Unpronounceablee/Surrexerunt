@@ -95,4 +95,16 @@ public class BossManager : MonoBehaviour {
                 break;
         }
 	}
+
+    void StageOne() {
+        
+    }
+
+    void StageTwo() {
+
+    }
+
+    void StageFinal() {
+
+    }
 }
