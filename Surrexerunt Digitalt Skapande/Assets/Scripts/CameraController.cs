@@ -32,7 +32,6 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-
         WhenToSmoth();
         RoudedOffAxis();
         MoveCamera();

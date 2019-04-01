@@ -11,6 +11,7 @@ public class SimpleEnemy : MonoBehaviour
     private GameObject player;
     private bool hasCollided;
     private bool dead;
+    private bool runonce;
 
 
 
@@ -22,8 +23,9 @@ public class SimpleEnemy : MonoBehaviour
 
         }
 
-        else if(player.GetComponent<PlayerMovement>().dashState == PlayerMovement.DashState.Cooldown)
+        else if(player.GetComponent<PlayerMovement>().dashState == PlayerMovement.DashState.Cooldown && !runonce)
         {
+            runonce = true;
             player.GetComponent<PlayerMovement>().dashState = PlayerMovement.DashState.CanDash;
 
         }
