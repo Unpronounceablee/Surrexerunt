@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float scissorOffset = 2;
 
     [SerializeField] private float knockback;
-    //[SerializeField] private float cantMoveDur;
+    [SerializeField] private float cantMoveDur;
 
     private bool dashButton;
 
@@ -191,7 +191,7 @@ public class PlayerMovement : MonoBehaviour
     {
         aimSprite.GetComponent<SpriteRenderer>().enabled = false;
         Time.timeScale = 1;
-        rb2d.AddForce(new Vector2(-knockback * Camera.main.GetComponent<CameraController>().controlOffset, 3), ForceMode2D.Impulse);
+        rb2d.AddForce(new Vector2(-knockback * Camera.main.GetComponent<CameraController>().controlOffset, knockback/2), ForceMode2D.Impulse);
         dashState = DashState.CantMove;
 
         StartCoroutine(Knockback());
@@ -202,8 +202,7 @@ public class PlayerMovement : MonoBehaviour
         while (!isGrounded)
         {
             plAnimatior.Play("Damaged");
-
-            yield return true;
+            yield return isGrounded;
         }
 
         //yield return new WaitForSeconds(cantMoveDur);
