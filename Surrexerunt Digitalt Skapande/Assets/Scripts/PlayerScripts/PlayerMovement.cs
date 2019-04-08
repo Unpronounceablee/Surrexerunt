@@ -11,19 +11,26 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    public enum DashState { Aiming, Dashing, Cooldown, CanDash, Knockback, CantMove}
+    public enum DashState { Aiming, Dashing, Cooldown, CanDash, Knockback, CantMove }
     #region Variables
     private Rigidbody2D rb2d;
 
     [Header("Stats")]
-    [SerializeField] private float mSpeed;  //Player speed
-    [SerializeField] private float jVelocity;   //Player jump height
+    [SerializeField]
+    private float mSpeed;  //Player speed
+    [SerializeField]
+    private float jVelocity;   //Player jump height
 
     [Header("Ground Check Components")]
-    [SerializeField] private LayerMask groundLayer; //What layer(s) is ground?
-    [SerializeField] private Transform groundCheck; //From where should the code check if the player is grounded?
-    [SerializeField] [Range(0f, 1f)] private float groundCheckCircleRadius; //Radius of the overlap circle (see line 84) that checks whether or not the player is  grounded.
-    [SerializeField] public bool isGrounded;   //Is the player grounded?
+    [SerializeField]
+    private LayerMask groundLayer; //What layer(s) is ground?
+    [SerializeField]
+    private Transform groundCheck; //From where should the code check if the player is grounded?
+    [SerializeField]
+    [Range(0f, 1f)]
+    private float groundCheckCircleRadius; //Radius of the overlap circle (see line 84) that checks whether or not the player is  grounded.
+    [SerializeField]
+    public bool isGrounded;   //Is the player grounded?
 
     private bool willJump;
     #endregion
@@ -33,10 +40,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float dashSpeed; // Dashing speed
 
-    [SerializeField] private float dashSmooting; // Dashing smoothing
+    [SerializeField]
+    private float dashSmooting; // Dashing smoothing
     Vector3 refer = Vector3.zero;
 
-    [SerializeField] private float startingDashDuration; // Duration of dash
+    [SerializeField]
+    private float startingDashDuration; // Duration of dash
 
     private Vector3 dashDir;
     public DashState dashState = DashState.CanDash;
@@ -45,14 +54,19 @@ public class PlayerMovement : MonoBehaviour
 
     public float dashCooldown = 0.15f;
 
-    [SerializeField] private float keepDashSpeed = 0;
+    [SerializeField]
+    private float keepDashSpeed = 0;
 
-    [SerializeField] public float slowTimeScale;
+    [SerializeField]
+    public float slowTimeScale;
 
-    [SerializeField] private GameObject aimSprite;
-    [SerializeField] private float scissorOffset = 2;
+    [SerializeField]
+    private GameObject aimSprite;
+    [SerializeField]
+    private float scissorOffset = 2;
 
-    [SerializeField] private float knockback;
+    [SerializeField]
+    private float knockback;
     //[SerializeField] private float cantMoveDur;
 
     private bool dashButton;
@@ -66,6 +80,8 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    public ParticleSystem JumpDust;
+    public bool JumpDustIsPlayed = false;
 
     void Start()
     {
@@ -140,16 +156,31 @@ public class PlayerMovement : MonoBehaviour
     /// 
     /// Tl;Dr: If the overlap circle touches a collider on the ground-layer the player is grounded and will be able to jump.
     /// </summary>
+    bool lastIsGrounded;
     private void GroundedChecker()
     {
-        isGrounded = false;
+        //if (isGrounded == false)
+        //{
+        //    JumpDustIsPlayed = false;
+        //}
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckCircleRadius, groundLayer);
         if (colliders.Length > 0)
         {
             isGrounded = true;
+            if (isGrounded == true && lastIsGrounded == false)
+            {
+                if (JumpDust.isPlaying == false)
+                {
+                    JumpDust.Play();
+                }
+            }
         }
-
+        else
+        {
+            isGrounded = false;
+        }
+        lastIsGrounded = isGrounded;
     }
 
     #region DashFunctions
@@ -227,7 +258,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     dashState = DashState.Dashing;
                     StartCoroutine(Dash());
-                    
+
                 }
 
                 break;
@@ -307,7 +338,8 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
-    public void DoubleJump() {
+    public void DoubleJump()
+    {
         rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
         rb2d.AddForce(Vector2.up * jVelocity, ForceMode2D.Impulse);
     }
