@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class BasicProj : MonoBehaviour {
 
-    float timeAlive = 4f;
+    float timeAlive = 3f;
     float speed = 4f;
     Rigidbody2D rb2d;
 

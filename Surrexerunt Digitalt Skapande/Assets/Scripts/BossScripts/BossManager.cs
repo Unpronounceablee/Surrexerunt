@@ -21,6 +21,8 @@ public class BossManager : MonoBehaviour {
     private BossPulse bossPulse;
     private BossBulletHell bossHell;
 
+    private TempRestart restart; //delete this later
+
     void Start () {
         health = startHealth;
         bossTeleport = gameObject.GetComponent<BossTeleport>();
@@ -28,49 +30,39 @@ public class BossManager : MonoBehaviour {
         bossVine = gameObject.GetComponent<BossVine>();
         bossPulse = gameObject.GetComponent<BossPulse>();
         bossHell = gameObject.GetComponent<BossBulletHell>();
+        restart = gameObject.GetComponent<TempRestart>(); //Delete this later
     }
 	
 	void Update () {
         switch (health) {
-            case 11:
+            case 9:
                 bossTeleport.enabled = true;
                 break;
-            case 10:
+            case 8:
                 bossTeleport.enabled = false;
                 bossProjectile.enabled = true;
                 break;
-            case 9:
+            case 7:
                 bossProjectile.enabled = false;
                 bossVine.enabled = true;
                 break;
-            case 8:
+            case 6:
                 bossVine.enabled = false;
                 bossPulse.enabled = true;
                 break;
-            case 7:
+            case 5:
                 bossPulse.enabled = false;
                 bossHell.enabled = true;
                 bossHell.cooldown = 0.05f;
                 bossHell.rotSpeed = 30f;
                 break;
-            case 6:
+            case 4:
                 bossHell.enabled = false;
                 bossTeleport.speed = 80;
                 bossTeleport.enabled = true;
                 break;
-            case 5:
-                bossTeleport.enabled = false;
-                bossProjectile.projectileAmount = 15;
-                bossProjectile.cooldown = 1f;
-                bossProjectile.enabled = true;
-                break;
-            case 4:
-                bossProjectile.enabled = false;
-                bossVine.cooldown = 1f;
-                bossVine.enabled = true;
-                break;
             case 3:
-                bossVine.enabled = false;
+                bossTeleport.enabled = false;
                 bossPulse.cooldown = 0.5f;
                 bossPulse.enabled = true;
                 break;
@@ -88,6 +80,7 @@ public class BossManager : MonoBehaviour {
                 break;
             case 0:
                 bossHell.enabled = false;
+                restart.enabled = true;
                 Destroy(gameObject);
                 break;
             default:
