@@ -16,14 +16,21 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb2d;
 
     [Header("Stats")]
-    [SerializeField] private float mSpeed;  //Player speed
-    [SerializeField] private float jVelocity;   //Player jump height
+    [SerializeField]
+    private float mSpeed;  //Player speed
+    [SerializeField]
+    private float jVelocity;   //Player jump height
 
     [Header("Ground Check Components")]
-    [SerializeField] private LayerMask groundLayer; //What layer(s) is ground?
-    [SerializeField] private Transform groundCheck; //From where should the code check if the player is grounded?
-    [SerializeField] [Range(0f, 1f)] private float groundCheckCircleRadius; //Radius of the overlap circle (see line 84) that checks whether or not the player is  grounded.
-    [SerializeField] public bool isGrounded;   //Is the player grounded?
+    [SerializeField]
+    private LayerMask groundLayer; //What layer(s) is ground?
+    [SerializeField]
+    private Transform groundCheck; //From where should the code check if the player is grounded?
+    [SerializeField]
+    [Range(0f, 1f)]
+    private float groundCheckCircleRadius; //Radius of the overlap circle (see line 84) that checks whether or not the player is  grounded.
+    [SerializeField]
+    public bool isGrounded;   //Is the player grounded?
 
     private bool willJump;
     #endregion
@@ -33,10 +40,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float dashSpeed; // Dashing speed
 
-    [SerializeField] private float dashSmooting; // Dashing smoothing
+    [SerializeField]
+    private float dashSmooting; // Dashing smoothing
     Vector3 refer = Vector3.zero;
 
-    [SerializeField] private float startingDashDuration; // Duration of dash
+    [SerializeField]
+    private float startingDashDuration; // Duration of dash
 
     private Vector3 dashDir;
     public DashState dashState = DashState.CanDash;
@@ -45,16 +54,25 @@ public class PlayerMovement : MonoBehaviour
 
     public float dashCooldown = 0.15f;
 
-    [SerializeField] private float keepDashSpeed = 0;
+    [SerializeField]
+    private float keepDashSpeed = 0;
 
-    [SerializeField] public float slowTimeScale;
+    [SerializeField]
+    public float slowTimeScale;
 
-    [SerializeField] private GameObject aimSprite;
-    [SerializeField] private float scissorOffset = 2;
+    [SerializeField]
+    private GameObject aimSprite;
+    [SerializeField]
+    private float scissorOffset = 2;
 
+<<<<<<< HEAD
     [SerializeField]
     private float knockback;
     //[SerializeField] private float cantMoveDur;
+=======
+    [SerializeField] private float knockback;
+    [SerializeField] private float cantMoveDur;
+>>>>>>> 1bbdb956af459a1487daef3792167084d028d1b7
 
     private bool dashButton;
 
@@ -220,8 +238,7 @@ public class PlayerMovement : MonoBehaviour
         while (!isGrounded)
         {
             plAnimatior.Play("Damaged");
-
-            yield return true;
+            yield return isGrounded;
         }
 
         //yield return new WaitForSeconds(cantMoveDur);
@@ -325,7 +342,8 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
-    public void DoubleJump() {
+    public void DoubleJump()
+    {
         rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
         rb2d.AddForce(Vector2.up * jVelocity, ForceMode2D.Impulse);
     }

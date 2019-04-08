@@ -5,25 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PontusScen.unity
     guid: 0acadd9403bfd7946b5229f490ee3b8e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Menu.unity
     guid: 3f57c81244b830d4cb22808cd61f55e9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Movement.unity
     guid: a428216e14858fa45950d24808086897
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MovementTest.unity
     guid: 7dd71fd82a79e554c92a5742475dd98d
   - enabled: 1
-    path: Assets/Scenes/BossTest.unity
-    guid: 05c53938e97c33b49a14a04306f7cf22
-  - enabled: 1
     path: Assets/Scenes/PontusBana.unity
     guid: b79d64b02a38430469fdcd21c5b61df1
+  - enabled: 1
+    path: Assets/Scenes/BossTest.unity
+    guid: 05c53938e97c33b49a14a04306f7cf22
   m_configObjects: {}

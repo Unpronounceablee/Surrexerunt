@@ -12,6 +12,8 @@ TagManager:
   - bossTP
   - sceneCenter
   - bossStartPos
+  - Checkpoint
+  - Jukebox
   layers:
   - Default
   - TransparentFX

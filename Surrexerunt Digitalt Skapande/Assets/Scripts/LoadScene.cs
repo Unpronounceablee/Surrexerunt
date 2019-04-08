@@ -2,13 +2,8 @@
 using UnityEngine.SceneManagement;
 //Sebastian Olsson SU16b
 public class LoadScene : MonoBehaviour {
-    public string scene;
-    void Start()
-    {
 
-
-    }
-    public void LoadOnClick()
+    public void LoadOnClick(string scene)
     {
         SceneManager.LoadScene(scene);
     }

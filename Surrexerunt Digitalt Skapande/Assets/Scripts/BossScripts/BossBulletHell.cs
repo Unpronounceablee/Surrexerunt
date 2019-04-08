@@ -12,7 +12,7 @@ public class BossBulletHell : MonoBehaviour {
     public float cooldown;
     private float effectiveCooldown;
 	
-	void Update () {
+	void FixedUpdate () {
         if (Vector2.Distance(transform.position, sceneCenter.position) > 0.1f)
             MoveToPosition();
         Shooting();
