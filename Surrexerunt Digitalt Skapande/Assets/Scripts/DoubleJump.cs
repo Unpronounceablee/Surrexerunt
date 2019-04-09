@@ -6,7 +6,6 @@ public class DoubleJump : MonoBehaviour {
 
     bool used;
     float cooldown = 5f;
-    [SerializeField] private AudioClip coinSound;
 
     private void Update() {
         if (used == true) {
@@ -21,7 +20,6 @@ public class DoubleJump : MonoBehaviour {
                 other.GetComponent<PlayerMovement>().DoubleJump();
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<Collider2D>().enabled = false;
-                GetComponent<PlaySound>().Play(coinSound);
                 used = true;
             }
         }

@@ -225,7 +225,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //yield return new WaitForSeconds(cantMoveDur);
-        //dashState = DashState.Cooldown;
+        dashState = DashState.Cooldown;
         StartCoroutine(DashCooldown());
 
 
