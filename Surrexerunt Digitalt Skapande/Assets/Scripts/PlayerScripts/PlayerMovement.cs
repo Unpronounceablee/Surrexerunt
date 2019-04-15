@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
-    public ParticleSystem JumpDust;
+    public GameObject JumpDust;
     public bool JumpDustIsPlayed = false;
 
     void Start()
@@ -157,10 +157,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             if (isGrounded == true && lastIsGrounded == false)
             {
-                if (JumpDust.isPlaying == false)
-                {
-                    JumpDust.Play();
-                }
+                Instantiate(JumpDust, groundCheck.position, groundCheck.rotation);
             }
         }
         else
@@ -328,5 +325,6 @@ public class PlayerMovement : MonoBehaviour
     public void DoubleJump() {
         rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
         rb2d.AddForce(Vector2.up * jVelocity, ForceMode2D.Impulse);
+        willJump = false;
     }
 }
