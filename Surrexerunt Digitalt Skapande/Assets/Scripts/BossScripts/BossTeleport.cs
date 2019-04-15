@@ -7,9 +7,12 @@ public class BossTeleport : MonoBehaviour {
     public Transform[] tpPos;
     public float speed;
     public float cooldown;
+    public bool shoot;
 
-    private float effectiveCooldown;
-    private int randomPos;
+    [SerializeField] GameObject projectile;
+
+    float effectiveCooldown;
+    int randomPos;
 
     void OnEnable () {
         effectiveCooldown = cooldown;
@@ -23,6 +26,9 @@ public class BossTeleport : MonoBehaviour {
             if (effectiveCooldown <= 0) {
                 randomPos = Random.Range(0, tpPos.Length);
                 effectiveCooldown = cooldown;
+                if (shoot) {
+                    Instantiate(projectile, transform.position, transform.rotation);
+                }
             } else {
                 effectiveCooldown -= Time.deltaTime;
             }

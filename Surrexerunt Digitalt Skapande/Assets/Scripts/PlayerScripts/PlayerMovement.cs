@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.Audio;
 using UnityEngine;
 
 /// <summary>
@@ -13,19 +14,19 @@ public class PlayerMovement : MonoBehaviour
 {
     public enum DashState { Aiming, Dashing, Cooldown, CanDash, Knockback, CantMove }
     #region Variables
-    private Rigidbody2D rb2d;
+    Rigidbody2D rb2d;
 
     [Header("Stats")]
-    [SerializeField] private float mSpeed;  //Player speed
-    [SerializeField] private float jVelocity;   //Player jump height
+    [SerializeField] float mSpeed;  //Player speed
+    [SerializeField] float jVelocity;   //Player jump height
 
     [Header("Ground Check Components")]
-    [SerializeField] private LayerMask groundLayer; //What layer(s) is ground?
-    [SerializeField] private Transform groundCheck; //From where should the code check if the player is grounded?
-    [SerializeField] [Range(0f, 1f)] private float groundCheckCircleRadius; //Radius of the overlap circle (see line 84) that checks whether or not the player is  grounded.
-    [SerializeField] public bool isGrounded;   //Is the player grounded?
+    [SerializeField] LayerMask groundLayer; //What layer(s) is ground?
+    [SerializeField] Transform groundCheck; //From where should the code check if the player is grounded?
+    [SerializeField] [Range(0f, 1f)] float groundCheckCircleRadius; //Radius of the overlap circle (see line 84) that checks whether or not the player is  grounded.
+    public bool isGrounded;   //Is the player grounded?
 
-    private bool willJump;
+    bool willJump;
     #endregion
 
     #region DashVariables
@@ -72,7 +73,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-
         rb2d = GetComponent<Rigidbody2D>();
         plAnimatior = GetComponent<Animator>();
         spRenderer = GetComponent<SpriteRenderer>();
