@@ -147,6 +147,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (willJump && isGrounded)
         {
+            PlaySound("Jump");
             rb2d.AddForce(Vector2.up * jVelocity, ForceMode2D.Impulse);
             willJump = false;
         }

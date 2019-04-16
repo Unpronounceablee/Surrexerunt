@@ -25,6 +25,7 @@ public class SoundFXManagerScript : MonoBehaviour {
             soundEffect.audioSource.clip = soundEffect.soundFX;
             soundEffect.audioSource.volume = soundEffect.volume;
             soundEffect.audioSource.loop = soundEffect.loop;
+            soundEffect.audioSource.pitch = soundEffect.pitch;
         }
     }
 

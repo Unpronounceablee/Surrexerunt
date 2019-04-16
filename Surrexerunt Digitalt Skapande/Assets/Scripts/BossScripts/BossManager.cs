@@ -100,4 +100,9 @@ public class BossManager : MonoBehaviour {
     void StageFinal() {
 
     }
+
+    public void TakeDamage() {
+
+        health--;
+    }
 }

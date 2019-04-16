@@ -2695,6 +2695,9 @@ MonoBehaviour:
   sceneCenter: {fileID: 1786047174}
   projectiles: []
   cooldown: 2
+  soundFxNames:
+  - GirlHya
+  - GirlHuh
 --- !u!114 &1573839699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2728,8 +2731,8 @@ MonoBehaviour:
     type: 2}
   sceneCenter: {fileID: 1786047174}
   gun: {fileID: 109792593}
-  rotSpeed: 5
-  cooldown: 2
+  rotSpeed: 1337
+  cooldown: 0.1
 --- !u!95 &1573839701
 Animator:
   serializedVersion: 3
@@ -3162,3 +3165,45 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &2060315468
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4628092631841052, guid: 6329d9cf11c8b8744af961e27ab643cf, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -2.7369022
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628092631841052, guid: 6329d9cf11c8b8744af961e27ab643cf, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.5167651
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628092631841052, guid: 6329d9cf11c8b8744af961e27ab643cf, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 6.458489
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628092631841052, guid: 6329d9cf11c8b8744af961e27ab643cf, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628092631841052, guid: 6329d9cf11c8b8744af961e27ab643cf, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628092631841052, guid: 6329d9cf11c8b8744af961e27ab643cf, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628092631841052, guid: 6329d9cf11c8b8744af961e27ab643cf, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628092631841052, guid: 6329d9cf11c8b8744af961e27ab643cf, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6329d9cf11c8b8744af961e27ab643cf, type: 2}
+  m_IsPrefabAsset: 0
