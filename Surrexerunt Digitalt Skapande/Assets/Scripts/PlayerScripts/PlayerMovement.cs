@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public enum DashState { Aiming, Dashing, Cooldown, CanDash, Knockback, CantMove }
     #region Variables
     Rigidbody2D rb2d;
+    AudioSource walkingSource;
+    [SerializeField] [Range(0f, 1f)] float walkingVolume;
 
     [Header("Stats")]
     [SerializeField] float mSpeed;  //Player speed
@@ -76,14 +78,12 @@ public class PlayerMovement : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         plAnimatior = GetComponent<Animator>();
         spRenderer = GetComponent<SpriteRenderer>();
-
+        walkingSource = GetComponent<AudioSource>();
     }
 
-    void Update()
-    {
+    void Update() {
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
+        if (Input.GetButtonDown("Jump") && isGrounded) {
             willJump = true;
             isGrounded = false;
         }
@@ -93,10 +93,27 @@ public class PlayerMovement : MonoBehaviour
         FlipSprite();
 
         SetAnimatiorVariables();
+        WalkingSoundEffect();
+
+    }
+
+    private void WalkingSoundEffect() {
+        if (rb2d.velocity.x != 0f && isGrounded) {
+            if (!walkingSource.isPlaying)
+                walkingSource.Play();
+        } else {
+            if (walkingSource.isPlaying && walkingSource.volume > 0f) {
+                walkingSource.volume -= Time.deltaTime;
+            } else {
+                walkingSource.Stop();
+                walkingSource.volume = walkingVolume;
+            }
+        }
     }
 
     void FixedUpdate()
     {
+
         GroundedChecker();
 
         Jump();
@@ -326,5 +343,9 @@ public class PlayerMovement : MonoBehaviour
         rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
         rb2d.AddForce(Vector2.up * jVelocity, ForceMode2D.Impulse);
         willJump = false;
+    }
+
+    public void PlaySound (string name) {
+        FindObjectOfType<SoundFXManagerScript>().PlaySound(name);
     }
 }

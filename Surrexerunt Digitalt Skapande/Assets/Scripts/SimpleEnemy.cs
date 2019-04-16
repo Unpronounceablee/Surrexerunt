@@ -42,7 +42,6 @@ public class SimpleEnemy : MonoBehaviour
     {
         if (player.GetComponent<PlayerMovement>().dashState == PlayerMovement.DashState.Dashing)
         {
-            //gameObject.SetActive(false);
             GetComponent<Animator>().Play("EnemyDead");
             dead = true;
             GetComponent<BoxCollider2D>().enabled = false;
@@ -68,7 +67,7 @@ public class SimpleEnemy : MonoBehaviour
         if (collision.gameObject == player && !hasCollided)
         {
             PlayerInteraction();
-            StartCoroutine(Wait(0.5f));
+            StartCoroutine(Wait(0.1f));
         }
     }
 
