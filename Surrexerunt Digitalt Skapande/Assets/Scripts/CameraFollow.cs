@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class CameraController : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
     //Written by Oscar Wadmark(su16b) and Pontus Mattsson(Su16B)
-    public GameObject player;
+    GameObject player;
     private float cameraOffset;
     public float controlOffset;
     private float offset;
@@ -18,6 +18,9 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float maxAimDur;
     private float aimTimePassed;
     private bool runOnce;
+    private Vector3 startPos;
+
+    public bool bossBattle;
 
 
     //[SerializeField] private float smootingWhileDashing;
@@ -25,8 +28,10 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         smoothing = defaultSmoothing;
         runOnce = true;
+        startPos = transform.position;
     }
 
 
@@ -41,12 +46,11 @@ public class CameraController : MonoBehaviour
 
     void MoveCamera()
     {
-        offset = player.transform.position.x + controlOffset + cameraOffset;
-        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(offset, transform.position.y, 
-            transform.position.z), ref refer, smoothing * Time.deltaTime);
-
-
-
+        if (!bossBattle) {
+            offset = player.transform.position.x + controlOffset + cameraOffset;
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(offset, transform.position.y, 
+                transform.position.z), ref refer, smoothing * Time.deltaTime);
+        }
     }
 
     void RoudedOffAxis()
@@ -119,6 +123,10 @@ public class CameraController : MonoBehaviour
         {
             aimTimePassed += Time.deltaTime * 10;
             cameraOffset = (Random.Range(-1, 1) * (aimTimePassed) * shakeAmmount / (maxAimDur * 10));
+            if (bossBattle) {
+                transform.position = Vector3.SmoothDamp(transform.position, new Vector3(cameraOffset, transform.position.y,
+                    transform.position.z), ref refer, smoothing * Time.deltaTime);
+            }
 
             if (aimTimePassed >= maxAimDur)
             {
@@ -129,13 +137,14 @@ public class CameraController : MonoBehaviour
         }
         aimTimePassed = 0;
         runOnce = true;
+        if (bossBattle) {
+            transform.position = startPos;
+        }
 
     }
 
     private void Knockback()
     {
         player.GetComponent<PlayerMovement>().dashState = PlayerMovement.DashState.Knockback;
-
-
     }
 }

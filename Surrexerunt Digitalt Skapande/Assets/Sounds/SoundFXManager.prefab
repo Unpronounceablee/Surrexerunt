@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114546078832705194}
   m_Layer: 0
   m_Name: SoundFXManager
-  m_TagString: Untagged
+  m_TagString: SoundManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     name: Wind
-    loop: 0
+    loop: 1
   - audioSource: {fileID: 0}
     soundFX: {fileID: 8300000, guid: 6b131cc888fea2744a3ff6c4f3ceef40, type: 3}
     volume: 0.3
@@ -93,4 +93,28 @@ MonoBehaviour:
     volume: 0.2
     pitch: 1
     name: GirlYah
+    loop: 0
+  - audioSource: {fileID: 0}
+    soundFX: {fileID: 8300000, guid: 73fc6d46abbde3f4dbd4b03f5fb239b9, type: 3}
+    volume: 0.6
+    pitch: 1.1
+    name: Jump
+    loop: 0
+  - audioSource: {fileID: 0}
+    soundFX: {fileID: 8300000, guid: 32097b35c5589014caac4d5fc0f33e39, type: 3}
+    volume: 0.3
+    pitch: 1.1
+    name: EnemyDeath
+    loop: 0
+  - audioSource: {fileID: 0}
+    soundFX: {fileID: 8300000, guid: 42b038f568d2fbc40b0c4d38cb93d5b2, type: 3}
+    volume: 0.3
+    pitch: 1
+    name: GirlDamage
+    loop: 0
+  - audioSource: {fileID: 0}
+    soundFX: {fileID: 8300000, guid: b2b35082a4ca13e4f8b27b0a6625ab87, type: 3}
+    volume: 0.5
+    pitch: 1
+    name: GirlScream
     loop: 0
