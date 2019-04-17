@@ -224,7 +224,7 @@ public class PlayerMovement : MonoBehaviour
     {
         aimSprite.GetComponent<SpriteRenderer>().enabled = false;
         Time.timeScale = 1;
-        rb2d.AddForce(new Vector2(-knockback * Camera.main.GetComponent<CameraController>().controlOffset, knockback), ForceMode2D.Impulse);
+        rb2d.AddForce(new Vector2(-knockback * Camera.main.GetComponent<CameraFollow>().controlOffset, knockback), ForceMode2D.Impulse);
         dashState = DashState.CantMove;
 
         StartCoroutine(Knockback());

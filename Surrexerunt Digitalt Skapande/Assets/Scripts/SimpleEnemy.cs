@@ -5,15 +5,24 @@ using UnityEngine;
 public class SimpleEnemy : MonoBehaviour
 {
 
+    AudioSource buzzing;
+    [SerializeField] ParticleSystem deathBurst;
+
     [SerializeField] float speed, dirTime;
     float effectiveDirTime;
     bool changeDir = false;
     private GameObject player;
     private bool hasCollided;
     private bool dead;
+
     private bool runonce;
 
+    private void Start()
+    {
+        buzzing = GetComponent<AudioSource>();
+        player = GameObject.FindGameObjectWithTag("Player");
 
+    }
 
     void Update()
     {
@@ -32,17 +41,16 @@ public class SimpleEnemy : MonoBehaviour
 
     }
 
-    private void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-
-    }
-
     void PlayerInteraction()
     {
         if (player.GetComponent<PlayerMovement>().dashState == PlayerMovement.DashState.Dashing)
         {
+            FindObjectOfType<SoundFXManagerScript>().PlaySound("EnemyDeath");
             GetComponent<Animator>().Play("EnemyDead");
+            Instantiate(deathBurst, transform.position, transform.rotation);
+            if (buzzing.volume > 0f) {
+                buzzing.volume = 0;
+            }
             dead = true;
             GetComponent<BoxCollider2D>().enabled = false;
             StartCoroutine(WaitForParts());

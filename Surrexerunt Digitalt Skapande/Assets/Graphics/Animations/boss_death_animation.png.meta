@@ -1,7 +1,11 @@
 fileFormatVersion: 2
-guid: 14dbbf326a32f48499a9eeac2a3533e0
+guid: 88b309cc0b014a64a94296b8a2e38454
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: boss_death_animation_0
+    21300002: boss_death_animation_1
+    21300004: boss_death_animation_2
+    21300006: boss_death_animation_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -40,13 +44,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.46315196, y: 0.4943311}
-  spritePixelsToUnits: 100
-  spriteBorder: {x: 359, y: 0, z: 487, w: 0}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 400
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -115,11 +119,91 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: boss_death_animation_0
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 99
+        width: 591
+        height: 779
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40795a4567cf6694f8d4ae160e7342fb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_death_animation_1
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 93
+        width: 635
+        height: 791
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eb6021cfacd75343b59e0b2655e2822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_death_animation_2
+      rect:
+        serializedVersion: 2
+        x: 2099
+        y: 93
+        width: 668
+        height: 806
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70574d8dd45c1f841993164426c7dc85
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_death_animation_3
+      rect:
+        serializedVersion: 2
+        x: 3147
+        y: 114
+        width: 713
+        height: 819
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab70c7c1959564b46bdf0f9ce7b3938f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3dfe45db86ec28544a07deaf6ef8015b
+    spriteID: dc7f57c1aa285d141ae6ff5cb46a708c
     vertices: []
     indices: 
     edges: []

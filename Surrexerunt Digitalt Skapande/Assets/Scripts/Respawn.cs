@@ -35,10 +35,10 @@ public class Respawn : MonoBehaviour
 
     private void RespawnPlayer()
     {
-        Camera.main.GetComponent<CameraController>().enabled = false;
+        Camera.main.GetComponent<CameraFollow>().enabled = false;
         player.transform.position = checkpoints[currentCheckpoint].transform.position;
         SnapToPlayer();
-        Camera.main.GetComponent<CameraController>().enabled = true;
+        Camera.main.GetComponent<CameraFollow>().enabled = true;
 
 
     }

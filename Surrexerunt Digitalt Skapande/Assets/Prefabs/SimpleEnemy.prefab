@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114235911637821266}
   - component: {fileID: 61424789076111898}
   - component: {fileID: 95969063241811530}
-  - component: {fileID: 82281428731520934}
+  - component: {fileID: 82101422339800568}
   m_Layer: 0
   m_Name: SimpleEnemy
   m_TagString: Untagged
@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 4380933586244628}
   - component: {fileID: 212938490123714032}
   - component: {fileID: 50473795052007124}
+  - component: {fileID: 114078919619056088}
   m_Layer: 0
   m_Name: enemy_flying_and_damage_8
   m_TagString: Untagged
@@ -72,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1382286852569480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.78, y: 0.79, z: 0}
+  m_LocalPosition: {x: 21.52, y: -3.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4380933586244628}
@@ -171,7 +172,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5206144, y: 1.0808737}
   m_EdgeRadius: 0
---- !u!82 &82281428731520934
+--- !u!82 &82101422339800568
 AudioSource:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -284,6 +285,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114078919619056088
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1533124084927586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48b9248fc618c64a88abf271652dcae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 3
+  destroyParent: 1
 --- !u!114 &114235911637821266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -295,6 +309,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f37de20b5972f3041a93e52b72e45ccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathBurst: {fileID: 198947562467883300, guid: 3e0cfe6109ce73f4ca1c34e0f676b9cf,
+    type: 2}
   speed: 2
   dirTime: 2
 --- !u!212 &212073211345573062
