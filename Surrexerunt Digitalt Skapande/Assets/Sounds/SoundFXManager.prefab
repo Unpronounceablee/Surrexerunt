@@ -71,7 +71,7 @@ MonoBehaviour:
     name: ThornSwoosh
     loop: 0
   - audioSource: {fileID: 0}
-    soundFX: {fileID: 8300000, guid: edfcc76e82b100f43a684f8f9b09daa2, type: 3}
+    soundFX: {fileID: 8300000, guid: b87b5679247a6eb429bc174ca41e5d50, type: 3}
     volume: 1
     pitch: 1
     name: GirlLaugh

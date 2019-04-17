@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.Audio;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Script for moving the player. 
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Stats")]
     [SerializeField] float mSpeed;  //Player speed
     [SerializeField] float jVelocity;   //Player jump height
+    [SerializeField] int health;
 
     [Header("Ground Check Components")]
     [SerializeField] LayerMask groundLayer; //What layer(s) is ground?
@@ -95,6 +97,13 @@ public class PlayerMovement : MonoBehaviour
         SetAnimatiorVariables();
         WalkingSoundEffect();
 
+        if (health <= 0) {
+            ReloadStage();
+        }
+    }
+
+    private static void ReloadStage() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void WalkingSoundEffect() {
@@ -260,7 +269,6 @@ public class PlayerMovement : MonoBehaviour
                 {
                     dashState = DashState.Dashing;
                     StartCoroutine(Dash());
-
                 }
 
                 break;
@@ -348,5 +356,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlaySound (string name) {
         FindObjectOfType<SoundFXManagerScript>().PlaySound(name);
+    }
+
+    public void TakeDamage() {
+        BeginKnockback();
+        health--;
     }
 }

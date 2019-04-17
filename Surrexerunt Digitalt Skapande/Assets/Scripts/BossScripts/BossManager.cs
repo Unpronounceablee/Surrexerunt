@@ -13,7 +13,7 @@ public class BossManager : MonoBehaviour {
 
     Animator anim;
 
-    [SerializeField] ParticleSystem damageParticles;
+    [SerializeField] ParticleSystem damageBurst, damagePetals, finalPetals, finalBurst;
 
     [Tooltip("Set equal to number of attacks")]
     public int startHealth;
@@ -37,55 +37,39 @@ public class BossManager : MonoBehaviour {
         bossPulse = gameObject.GetComponent<BossPulse>();
         bossHell = gameObject.GetComponent<BossBulletHell>();
         restart = gameObject.GetComponent<TempRestart>(); //Delete this later
-        GAStage();
+        StartCoroutine(BeginFight());
 
     }
 
     private void GAStage() {
         switch (health) {
-            case 9:
-                bossTeleport.enabled = true;
-                break;
-            case 8:
-                DisableAttacks();
-                bossProjectile.enabled = true;
-                break;
-            case 7:
-                DisableAttacks();
-                bossVine.enabled = true;
-                break;
             case 6:
-                DisableAttacks();
-                bossPulse.enabled = true;
+                bossTeleport.enabled = true;
                 break;
             case 5:
                 DisableAttacks();
-                bossHell.enabled = true;
-                bossHell.cooldown = 0.05f;
-                bossHell.rotSpeed = 30f;
+                bossProjectile.enabled = true;
                 break;
             case 4:
                 DisableAttacks();
-                bossTeleport.speed = 80;
-                bossTeleport.enabled = true;
+                bossPulse.enabled = true;
                 break;
             case 3:
                 DisableAttacks();
-                bossPulse.cooldown = 0.5f;
-                bossPulse.enabled = true;
+                bossHell.enabled = true;
+                bossHell.cooldown = 0.1f;
+                bossHell.rotSpeed = 69f;
                 break;
             case 2:
                 DisableAttacks();
-                bossHell.enabled = true;
-                bossHell.cooldown = 0.02f;
-                bossHell.rotSpeed = 50f;
+                bossTeleport.speed = 80;
+                bossTeleport.enabled = true;
                 break;
             case 1:
                 DisableAttacks();
-                bossHell.cooldown = 0.05f;
-                bossHell.rotSpeed = 30f;
-                bossTeleport.speed = 80;
-                bossTeleport.enabled = true;
+                bossHell.enabled = true;
+                bossHell.cooldown = 0.1f;
+                bossHell.rotSpeed = 1337f;
                 break;
             case 0:
                 StartCoroutine(Die());
@@ -103,7 +87,9 @@ public class BossManager : MonoBehaviour {
     IEnumerator RemoveHealth() {
         DisableAttacks();
         anim.SetBool("PlayingDamageAnim", true);
+        gameObject.GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(1);
+        gameObject.GetComponent<Collider2D>().enabled = true;
         anim.SetBool("PlayingDamageAnim", false);
         health--;
         GAStage();
@@ -114,6 +100,12 @@ public class BossManager : MonoBehaviour {
         anim.SetBool("IsDead", true);
         yield return new WaitForSeconds(2.5f);
         Destroy(gameObject);
+    }
+
+    IEnumerator BeginFight() {
+        FindObjectOfType<SoundFXManagerScript>().PlaySound("GirlLaugh");
+        yield return new WaitForSeconds(1);
+        GAStage();
     }
 
     void DisableAttacks() {
@@ -128,11 +120,32 @@ public class BossManager : MonoBehaviour {
         FindObjectOfType<SoundFXManagerScript>().PlaySound(name);
     }
 
+    #region Particles
     void DamageParticles () {
-        if (damageParticles == null) {
-            Debug.Log("Damage Particles not found!");
+        if (damageBurst == null) {
+            Debug.Log("Damage Burst not found!");
             return;
         }
-        Instantiate(damageParticles, transform.position, transform.rotation);
+        Instantiate(damageBurst, transform.position, transform.rotation);
+        if (damagePetals == null) {
+            Debug.Log("Damage Petals not found!");
+            return;
+        }
+        Instantiate(damagePetals, transform.position, transform.rotation);
     }
+    void FinalBurst() {
+        if (finalBurst == null) {
+            Debug.Log("Final Burst Particles not found!");
+            return;
+        }
+        Instantiate(finalBurst, transform.position, transform.rotation);
+    }
+    void FinalPetal() {
+        if (finalPetals == null) {
+            Debug.Log("Final Petals Particles not found!");
+            return;
+        }
+        Instantiate(finalPetals, transform.position, transform.rotation);
+    }
+    #endregion
 }

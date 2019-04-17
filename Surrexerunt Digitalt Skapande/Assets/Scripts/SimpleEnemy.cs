@@ -58,7 +58,7 @@ public class SimpleEnemy : MonoBehaviour
         }
         else
         {
-            player.GetComponent<PlayerMovement>().dashState = PlayerMovement.DashState.Knockback;
+            player.GetComponent<PlayerMovement>().TakeDamage();
         }
     }
 
