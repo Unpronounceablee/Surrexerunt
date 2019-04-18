@@ -46,4 +46,11 @@ public class SceneMasterScript : MonoBehaviour {
         SceneManager.LoadScene(levelName);
     }
 
+    //Remove this later
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.R)) {
+            SceneManager.LoadScene("GALevel");
+        }
+    }
+
 }

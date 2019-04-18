@@ -20,4 +20,10 @@ public class ProjectileManager : MonoBehaviour {
             transform.RotateAround(boss.position, Vector3.forward, speed * Time.deltaTime);
         }
 	}
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "Player") {
+            FindObjectOfType<PlayerMovement>().TakeDamage();
+        }
+    }
 }

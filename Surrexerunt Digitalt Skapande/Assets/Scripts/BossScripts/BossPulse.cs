@@ -16,11 +16,11 @@ public class BossPulse : MonoBehaviour {
     private int locationMultiplier;
 
     void OnEnable() {
-        transform.position = sceneCenter.position;
         sceneCenter = GameObject.FindGameObjectWithTag("sceneCenter").transform;
         if (sceneCenter == null) {
             Debug.Log("Scene Center couldn't be found, did you misspell it?");
         }
+        transform.position = sceneCenter.position;
         locationMultiplier = 360 / projectileAmount;
         effectiveCooldown = cooldown;
         Vector3 centre = transform.position;

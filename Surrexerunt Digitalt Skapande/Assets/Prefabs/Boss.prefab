@@ -28,7 +28,8 @@ GameObject:
   - component: {fileID: 114456136936072240}
   - component: {fileID: 114281744111072698}
   - component: {fileID: 61160261265825912}
-  - component: {fileID: 114410600631674428}
+  - component: {fileID: 114573725586521366}
+  - component: {fileID: 114259327744664460}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -138,6 +139,18 @@ MonoBehaviour:
   gun: {fileID: 4318939252946484}
   rotSpeed: 1337
   cooldown: 0.1
+--- !u!114 &114259327744664460
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1283202003530346}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d77dd494d8c2c4d9a2a3e7d804b63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  retry: {fileID: 0}
 --- !u!114 &114281744111072698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -156,18 +169,6 @@ MonoBehaviour:
   sceneCenter: {fileID: 0}
   projectiles: []
   cooldown: 1
---- !u!114 &114410600631674428
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1283202003530346}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73d77dd494d8c2c4d9a2a3e7d804b63b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  retry: {fileID: 0}
 --- !u!114 &114456136936072240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -213,6 +214,17 @@ MonoBehaviour:
   cooldown: 1
   shoot: 0
   projectile: {fileID: 1730723886321034, guid: 985a8bdde8f067744bc09024c9cae08a, type: 2}
+--- !u!114 &114573725586521366
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1283202003530346}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54799819413c6043b61f64884f5d4b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114931733639866910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,7 +244,7 @@ MonoBehaviour:
     type: 2}
   finalBurst: {fileID: 198123117251386004, guid: bcef23a4a384fc64dae35bd5c09509dc,
     type: 2}
-  startHealth: 7
+  startHealth: 6
   health: 0
 --- !u!114 &114995984347426898
 MonoBehaviour:

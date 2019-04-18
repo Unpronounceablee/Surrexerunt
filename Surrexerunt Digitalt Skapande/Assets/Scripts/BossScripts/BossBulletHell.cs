@@ -13,11 +13,11 @@ public class BossBulletHell : MonoBehaviour {
     private float effectiveCooldown;
 
     private void OnEnable() {
-        transform.position = sceneCenter.position;
         sceneCenter = GameObject.FindGameObjectWithTag("sceneCenter").transform;
         if (sceneCenter == null) {
             Debug.Log("Scene Center couldn't be found, did you misspell it?");
         }
+        transform.position = sceneCenter.position;
     }
 
     void FixedUpdate () {

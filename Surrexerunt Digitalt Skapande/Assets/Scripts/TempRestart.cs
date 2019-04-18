@@ -10,5 +10,6 @@ public class TempRestart : MonoBehaviour {
 
 	void OnEnable () {
         retry.SetActive(true);
-	}
+
+    }
 }
