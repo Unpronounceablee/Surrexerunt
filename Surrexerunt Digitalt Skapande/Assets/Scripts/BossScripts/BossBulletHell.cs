@@ -11,8 +11,16 @@ public class BossBulletHell : MonoBehaviour {
     public float rotSpeed;
     public float cooldown;
     private float effectiveCooldown;
-	
-	void FixedUpdate () {
+
+    private void OnEnable() {
+        transform.position = sceneCenter.position;
+        sceneCenter = GameObject.FindGameObjectWithTag("sceneCenter").transform;
+        if (sceneCenter == null) {
+            Debug.Log("Scene Center couldn't be found, did you misspell it?");
+        }
+    }
+
+    void FixedUpdate () {
         if (Vector2.Distance(transform.position, sceneCenter.position) > 0.1f)
             MoveToPosition();
         Shooting();

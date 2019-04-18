@@ -18,6 +18,10 @@ public class BossProjectile : MonoBehaviour {
     [SerializeField] string[] soundFxNames;
 
     void OnEnable() {
+        sceneCenter = GameObject.FindGameObjectWithTag("sceneCenter").transform;
+        if (sceneCenter == null) {
+            Debug.Log("Scene Center couldn't be found, did you misspell it?");
+        }
         transform.position = sceneCenter.position;
         locationMultiplier = 360 / projectileAmount;
         Vector3 centre = transform.position;

@@ -27,8 +27,10 @@ public class BossManager : MonoBehaviour {
 
     private TempRestart restart; //delete this later
 
+
     void Start () {
         FindObjectOfType<CameraFollow>().bossBattle = true;
+        FindObjectOfType<PlayerMovement>().bossBatlle = true;
         health = startHealth;
         anim = gameObject.GetComponent<Animator>();
         bossTeleport = gameObject.GetComponent<BossTeleport>();
@@ -98,7 +100,10 @@ public class BossManager : MonoBehaviour {
     IEnumerator Die() {
         DisableAttacks();
         anim.SetBool("IsDead", true);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.5f);
+        FindObjectOfType<SceneMasterScript>().OnlyTransition("FadeOut");
+        yield return new WaitForSeconds(1);
+        restart.enabled = true;
         Destroy(gameObject);
     }
 

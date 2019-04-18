@@ -247,13 +247,14 @@ MonoBehaviour:
   walkingVolume: 0.05
   mSpeed: 7
   jVelocity: 15
-  health: 3
+  startHealth: 3
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
   groundCheck: {fileID: 4353138103630196}
   groundCheckCircleRadius: 0.5
   isGrounded: 0
+  bossBatlle: 0
   dashSpeed: 25
   dashSmooting: 0.3
   startingDashDuration: 0.15
@@ -292,7 +293,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1338558831991488}
-  maxLives: 10000
   checkpoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -360,6 +360,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.45, y: -0.406}
+  m_AnchoredPosition: {x: -6.3, y: -0.494}
   m_SizeDelta: {x: 2.5, y: 2.5}
   m_Pivot: {x: 0.5, y: 0.5}

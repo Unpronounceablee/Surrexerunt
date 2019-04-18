@@ -108,7 +108,7 @@ MonoBehaviour:
     loop: 0
   - audioSource: {fileID: 0}
     soundFX: {fileID: 8300000, guid: 42b038f568d2fbc40b0c4d38cb93d5b2, type: 3}
-    volume: 0.3
+    volume: 1
     pitch: 1
     name: GirlDamage
     loop: 0
@@ -117,4 +117,10 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
     name: GirlScream
+    loop: 0
+  - audioSource: {fileID: 0}
+    soundFX: {fileID: 8300000, guid: f62bf12b24058bd4e95dad6bd6a064ac, type: 3}
+    volume: 0.3
+    pitch: 1.1
+    name: MainGirlDamage
     loop: 0

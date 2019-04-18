@@ -7,7 +7,7 @@ public class BasicProj : MonoBehaviour {
 
     float timeAlive = 3f;
     float speed = 4f;
-    float noDmgtime = 1f;
+    float noDmgtime = 0.5f;
     Rigidbody2D rb2d;
 
 	void Start () {

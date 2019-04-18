@@ -15,6 +15,9 @@ TagManager:
   - Checkpoint
   - Jukebox
   - SoundManager
+  - AimSprite
+  - vineStart
+  - TransitionSlave
   layers:
   - Default
   - TransparentFX

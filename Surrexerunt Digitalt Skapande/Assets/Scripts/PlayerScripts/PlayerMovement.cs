@@ -22,7 +22,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Stats")]
     [SerializeField] float mSpeed;  //Player speed
     [SerializeField] float jVelocity;   //Player jump height
-    [SerializeField] int health;
+    [SerializeField] int startHealth;
+    int health;
 
     [Header("Ground Check Components")]
     [SerializeField] LayerMask groundLayer; //What layer(s) is ground?
@@ -31,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrounded;   //Is the player grounded?
 
     bool willJump;
+
+    [HideInInspector]public bool bossBatlle;
     #endregion
 
     #region DashVariables
@@ -75,12 +78,17 @@ public class PlayerMovement : MonoBehaviour
     public GameObject JumpDust;
     public bool JumpDustIsPlayed = false;
 
+    Respawn respawnScript;
+
     void Start()
     {
+        respawnScript = gameObject.GetComponent<Respawn>();
         rb2d = GetComponent<Rigidbody2D>();
         plAnimatior = GetComponent<Animator>();
         spRenderer = GetComponent<SpriteRenderer>();
         walkingSource = GetComponent<AudioSource>();
+        aimSprite = GameObject.FindGameObjectWithTag("AimSprite");
+        health = startHealth;
     }
 
     void Update() {
@@ -98,12 +106,18 @@ public class PlayerMovement : MonoBehaviour
         WalkingSoundEffect();
 
         if (health <= 0) {
-            ReloadStage();
+            if (bossBatlle) {
+                ReloadStage();
+                health = startHealth;
+            } else {
+                respawnScript.PlayerDied();
+                health = startHealth;
+            }
         }
     }
 
     private static void ReloadStage() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        FindObjectOfType<SceneMasterScript>().ReloadTransition("FadeOut");
     }
 
     private void WalkingSoundEffect() {
@@ -157,6 +171,7 @@ public class PlayerMovement : MonoBehaviour
         if (willJump && isGrounded)
         {
             PlaySound("Jump");
+            Instantiate(JumpDust, groundCheck.position, groundCheck.rotation);
             rb2d.AddForce(Vector2.up * jVelocity, ForceMode2D.Impulse);
             willJump = false;
         }
