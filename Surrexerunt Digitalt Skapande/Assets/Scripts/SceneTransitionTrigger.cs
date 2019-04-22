@@ -8,6 +8,7 @@ public class SceneTransitionTrigger : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other) {
         FindObjectOfType<SceneMasterScript>().Transition(sceneName);
+        FindObjectOfType<Jukebox>().killMusic = true;
     }
 
 }
