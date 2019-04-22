@@ -21,10 +21,26 @@ GameObject:
   - component: {fileID: 4291972537380706}
   - component: {fileID: 212368109054591184}
   - component: {fileID: 61195615296388770}
+  - component: {fileID: 114269914855796932}
   m_Layer: 0
   m_Name: Checkpoint 1
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1307021254622980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4994681825478330}
+  m_Layer: 0
+  m_Name: ParticlePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -34,11 +50,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1251489703364856}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 67.09, y: 2.33, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4994681825478330}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4994681825478330
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1307021254622980}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.85, y: 2.67, z: 0}
+  m_LocalPosition: {x: -0.014, y: 1.188, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 4291972537380706}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &61195615296388770
@@ -66,6 +96,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1762276, y: 5}
   m_EdgeRadius: 0
+--- !u!114 &114269914855796932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1251489703364856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e92402c1b9c589d4eacd4505c366b01b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePoint: {fileID: 1307021254622980}
+  lit: {fileID: 21300000, guid: 6a7e670dcb3966c4d9b84007a51d36e1, type: 3}
+  particleEffect: {fileID: 198686781042405414, guid: 09ac8e035d89c31418063866d39954c1,
+    type: 2}
 --- !u!212 &212368109054591184
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -100,8 +145,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 6a7e670dcb3966c4d9b84007a51d36e1, type: 3}
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: f405c071e7f88b44ca1af6f061ed05c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

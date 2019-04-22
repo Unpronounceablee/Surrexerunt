@@ -102,9 +102,10 @@ public class BossManager : MonoBehaviour {
         anim.SetBool("IsDead", true);
         yield return new WaitForSeconds(1.5f);
         FindObjectOfType<SceneMasterScript>().OnlyTransition("FadeOut");
+        FindObjectOfType<Jukebox>().killMusic = true;
         yield return new WaitForSeconds(1);
         restart.enabled = true;
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     IEnumerator BeginFight() {

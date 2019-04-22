@@ -8,15 +8,27 @@ public class AnimatorEvents : MonoBehaviour {
         Instantiate(effect, transform.position, transform.rotation);
     }
 
-    void LoadScene(string sceneName) {
-        FindObjectOfType<SceneMasterScript>().Transition(name);
+    void TransitionLoadScene(string sceneName) {
+        FindObjectOfType<SceneMasterScript>().Transition(sceneName);
+    }
+
+    void LoadScen (string sceneName) {
+        FindObjectOfType<SceneMasterScript>().LoadScene(sceneName);
     }
 
     void PlaySound(string soundName) {
-        FindObjectOfType<SoundFXManagerScript>().PlaySound(name); ;
+        FindObjectOfType<SoundFXManagerScript>().PlaySound(soundName); ;
     }
 
     void ExitGame() {
         FindObjectOfType<SceneMasterScript>().Exit();
+    }
+
+    void DisableSelf() {
+        gameObject.SetActive(false);
+    }
+
+    void DestroySelf() {
+        Destroy(gameObject);
     }
 }

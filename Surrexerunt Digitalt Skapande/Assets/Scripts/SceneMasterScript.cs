@@ -13,7 +13,7 @@ public class SceneMasterScript : MonoBehaviour {
         anim = gameObject.GetComponent<Animator>();
     }
 
-    public void LoadScene() {
+    public void LoadScene(string levelName) {
         SceneManager.LoadScene(levelName);
     }
 

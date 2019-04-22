@@ -124,3 +124,9 @@ MonoBehaviour:
     pitch: 1.1
     name: MainGirlDamage
     loop: 0
+  - audioSource: {fileID: 0}
+    soundFX: {fileID: 8300000, guid: 54a964ad1de992d4b9b64a59c0968dba, type: 3}
+    volume: 0.2
+    pitch: 1.1
+    name: Poof
+    loop: 0

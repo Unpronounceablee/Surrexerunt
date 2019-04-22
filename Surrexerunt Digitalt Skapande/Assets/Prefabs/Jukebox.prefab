@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4409726705791400}
   - component: {fileID: 114808350257873674}
   - component: {fileID: 82551843199602464}
+  - component: {fileID: 95195057707246464}
+  - component: {fileID: 114581959704411772}
   m_Layer: 0
   m_Name: Jukebox
   m_TagString: Jukebox
@@ -50,9 +52,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 55c041c2e13be2c44b798c969269151f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 62481608631f1a34095b4a7cdd37bc9b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -136,6 +138,35 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &95195057707246464
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1325937023301890}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 170ba1b57f21b60428db8ae8cffacc0a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114581959704411772
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1325937023301890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f53522de665ae46a5c2a22eeb52e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114808350257873674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -147,3 +178,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba127966f2ec612488c5acbc282f559e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  killMusic: 0
