@@ -7,6 +7,7 @@ public class BasicProj : MonoBehaviour {
 
     float timeAlive = 3f;
     float speed = 4f;
+    float noDmgtime = 0.5f;
     Rigidbody2D rb2d;
 
 	void Start () {
@@ -14,9 +15,19 @@ public class BasicProj : MonoBehaviour {
 	}
 	
 	void Update () {
+        if (noDmgtime >= 0f) {
+            noDmgtime -= Time.deltaTime;
+        }
         timeAlive -= Time.deltaTime;
         transform.Translate(transform.up * speed * Time.deltaTime, Space.World);
         if (timeAlive <= 0) {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "Player" && noDmgtime <= 0f) {
+            FindObjectOfType<PlayerMovement>().TakeDamage();
             Destroy(gameObject);
         }
     }

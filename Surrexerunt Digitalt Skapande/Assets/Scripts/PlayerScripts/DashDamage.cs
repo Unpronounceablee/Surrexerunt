@@ -12,16 +12,11 @@ public class DashDamage : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
     }
 
-    void Update()
-    {
-
-    }
-
     void DealDamageInDash(Collider2D enemy)
     {
         if (playerMovement.dashState == PlayerMovement.DashState.Dashing && enemy.tag == "Boss")
         {
-            enemy.GetComponent<BossManager>().health -= dashDmg;
+            enemy.GetComponent<BossManager>().TakeDamage();
         }
     }
 

@@ -5,15 +5,24 @@ using UnityEngine;
 public class SimpleEnemy : MonoBehaviour
 {
 
+    AudioSource buzzing;
+    [SerializeField] ParticleSystem deathBurst;
+
     [SerializeField] float speed, dirTime;
     float effectiveDirTime;
     bool changeDir = false;
     private GameObject player;
     private bool hasCollided;
     private bool dead;
+
     private bool runonce;
 
+    private void Start()
+    {
+        buzzing = GetComponent<AudioSource>();
+        player = GameObject.FindGameObjectWithTag("Player");
 
+    }
 
     void Update()
     {
@@ -32,18 +41,16 @@ public class SimpleEnemy : MonoBehaviour
 
     }
 
-    private void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-
-    }
-
     void PlayerInteraction()
     {
         if (player.GetComponent<PlayerMovement>().dashState == PlayerMovement.DashState.Dashing)
         {
-            //gameObject.SetActive(false);
+            FindObjectOfType<SoundFXManagerScript>().PlaySound("EnemyDeath");
             GetComponent<Animator>().Play("EnemyDead");
+            Instantiate(deathBurst, transform.position, transform.rotation);
+            if (buzzing.volume > 0f) {
+                buzzing.volume = 0;
+            }
             dead = true;
             GetComponent<BoxCollider2D>().enabled = false;
             StartCoroutine(WaitForParts());
@@ -51,7 +58,7 @@ public class SimpleEnemy : MonoBehaviour
         }
         else
         {
-            player.GetComponent<PlayerMovement>().dashState = PlayerMovement.DashState.Knockback;
+            player.GetComponent<PlayerMovement>().TakeDamage();
         }
     }
 
@@ -68,7 +75,7 @@ public class SimpleEnemy : MonoBehaviour
         if (collision.gameObject == player && !hasCollided)
         {
             PlayerInteraction();
-            StartCoroutine(Wait(0.5f));
+            StartCoroutine(Wait(0.1f));
         }
     }
 

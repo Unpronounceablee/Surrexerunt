@@ -9,8 +9,6 @@ public class Respawn : MonoBehaviour
 {
 
     public GameObject player;
-    public int maxLives;
-    private int lives;
     private int currentCheckpoint;
     public GameObject[] checkpoints;
     public int respawnDepth;
@@ -23,22 +21,21 @@ public class Respawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Death();
+        FallOff();
 
     }
     private void Start()
     {
         player = gameObject;
-        lives = maxLives;
         blackImage = GameObject.Find("FadeToBlack").GetComponent<Image>();
     }
 
     private void RespawnPlayer()
     {
-        Camera.main.GetComponent<CameraController>().enabled = false;
+        Camera.main.GetComponent<CameraFollow>().enabled = false;
         player.transform.position = checkpoints[currentCheckpoint].transform.position;
         SnapToPlayer();
-        Camera.main.GetComponent<CameraController>().enabled = true;
+        Camera.main.GetComponent<CameraFollow>().enabled = true;
 
 
     }
@@ -54,7 +51,7 @@ public class Respawn : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    private void Death()
+    private void FallOff()
     {
         if (player.transform.position.y <= respawnDepth)
         {
@@ -63,13 +60,12 @@ public class Respawn : MonoBehaviour
                 StartCoroutine(Fade());
                 respawn = false;
             }
+        }
+    }
 
-            lives -= 1;
-        }
-        else if (lives <= 0)
-        {
-            RestartLevel();
-        }
+    public void PlayerDied() {
+        StartCoroutine(Fade());
+        respawn = false;
     }
 
     private IEnumerator Fade()
@@ -93,7 +89,7 @@ public class Respawn : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Checkpoint") {
             currentCheckpoint++;
-            other.gameObject.SetActive(false);
+            other.gameObject.GetComponent<Collider2D>().enabled = false;
         }
     }
 

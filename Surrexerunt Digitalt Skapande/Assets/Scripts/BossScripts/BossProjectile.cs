@@ -15,7 +15,13 @@ public class BossProjectile : MonoBehaviour {
     private float effectiveCooldown;
     private int locationMultiplier;
 
+    [SerializeField] string[] soundFxNames;
+
     void OnEnable() {
+        sceneCenter = GameObject.FindGameObjectWithTag("sceneCenter").transform;
+        if (sceneCenter == null) {
+            Debug.Log("Scene Center couldn't be found, did you misspell it?");
+        }
         transform.position = sceneCenter.position;
         locationMultiplier = 360 / projectileAmount;
         Vector3 centre = transform.position;
@@ -31,6 +37,8 @@ public class BossProjectile : MonoBehaviour {
         if (effectiveCooldown <= 0) {
             if (projectiles.Count > 0) {
                 int chosenOne = Random.Range(0, projectiles.Count);
+                int randSound = Random.Range(0, soundFxNames.Length);
+                FindObjectOfType<SoundFXManagerScript>().PlaySound(soundFxNames[randSound]);
                 projectiles[chosenOne].GetComponent<ProjectileManager>().activate = true;
                 projectiles.Remove(projectiles[chosenOne]);
                 effectiveCooldown = cooldown;

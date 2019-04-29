@@ -1,6 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.Audio;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Script for moving the player. 
@@ -11,21 +13,27 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    public enum DashState { Aiming, Dashing, Cooldown, CanDash, Knockback, CantMove}
+    public enum DashState { Aiming, Dashing, Cooldown, CanDash, Knockback, CantMove }
     #region Variables
-    private Rigidbody2D rb2d;
+    Rigidbody2D rb2d;
+    AudioSource walkingSource;
+    [SerializeField] [Range(0f, 1f)] float walkingVolume;
 
     [Header("Stats")]
-    [SerializeField] private float mSpeed;  //Player speed
-    [SerializeField] private float jVelocity;   //Player jump height
+    [SerializeField] float mSpeed;  //Player speed
+    [SerializeField] float jVelocity;   //Player jump height
+    [SerializeField] int startHealth;
+    int health;
 
     [Header("Ground Check Components")]
-    [SerializeField] private LayerMask groundLayer; //What layer(s) is ground?
-    [SerializeField] private Transform groundCheck; //From where should the code check if the player is grounded?
-    [SerializeField] [Range(0f, 1f)] private float groundCheckCircleRadius; //Radius of the overlap circle (see line 84) that checks whether or not the player is  grounded.
-    [SerializeField] public bool isGrounded;   //Is the player grounded?
+    [SerializeField] LayerMask groundLayer; //What layer(s) is ground?
+    [SerializeField] Transform groundCheck; //From where should the code check if the player is grounded?
+    [SerializeField] [Range(0f, 1f)] float groundCheckCircleRadius; //Radius of the overlap circle (see line 84) that checks whether or not the player is  grounded.
+    public bool isGrounded;   //Is the player grounded?
 
-    private bool willJump;
+    bool willJump;
+
+    [HideInInspector]public bool bossBatlle;
     #endregion
 
     #region DashVariables
@@ -52,8 +60,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject aimSprite;
     [SerializeField] private float scissorOffset = 2;
 
-    [SerializeField] private float knockback;
-    [SerializeField] private float cantMoveDur;
+    [SerializeField]
+    private float knockback;
+    //[SerializeField] private float cantMoveDur;
 
     private bool dashButton;
 
@@ -66,21 +75,25 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    public GameObject JumpDust;
+    public bool JumpDustIsPlayed = false;
+
+    Respawn respawnScript;
 
     void Start()
     {
-
+        respawnScript = gameObject.GetComponent<Respawn>();
         rb2d = GetComponent<Rigidbody2D>();
         plAnimatior = GetComponent<Animator>();
         spRenderer = GetComponent<SpriteRenderer>();
-
+        walkingSource = GetComponent<AudioSource>();
+        aimSprite = GameObject.FindGameObjectWithTag("AimSprite");
+        health = startHealth;
     }
 
-    void Update()
-    {
+    void Update() {
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
+        if (Input.GetButtonDown("Jump") && isGrounded) {
             willJump = true;
             isGrounded = false;
         }
@@ -90,10 +103,40 @@ public class PlayerMovement : MonoBehaviour
         FlipSprite();
 
         SetAnimatiorVariables();
+        WalkingSoundEffect();
+
+        if (health <= 0) {
+            if (bossBatlle) {
+                ReloadStage();
+                health = startHealth;
+            } else {
+                respawnScript.PlayerDied();
+                health = startHealth;
+            }
+        }
+    }
+
+    private static void ReloadStage() {
+        FindObjectOfType<SceneMasterScript>().ReloadTransition("FadeOut");
+    }
+
+    private void WalkingSoundEffect() {
+        if (rb2d.velocity.x != 0f && isGrounded) {
+            if (!walkingSource.isPlaying)
+                walkingSource.Play();
+        } else {
+            if (walkingSource.isPlaying && walkingSource.volume > 0f) {
+                walkingSource.volume -= Time.deltaTime;
+            } else {
+                walkingSource.Stop();
+                walkingSource.volume = walkingVolume;
+            }
+        }
     }
 
     void FixedUpdate()
     {
+
         GroundedChecker();
 
         Jump();
@@ -127,6 +170,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (willJump && isGrounded)
         {
+            PlaySound("Jump");
+            Instantiate(JumpDust, groundCheck.position, groundCheck.rotation);
             rb2d.AddForce(Vector2.up * jVelocity, ForceMode2D.Impulse);
             willJump = false;
         }
@@ -140,16 +185,28 @@ public class PlayerMovement : MonoBehaviour
     /// 
     /// Tl;Dr: If the overlap circle touches a collider on the ground-layer the player is grounded and will be able to jump.
     /// </summary>
+    bool lastIsGrounded;
     private void GroundedChecker()
     {
-        isGrounded = false;
+        //if (isGrounded == false)
+        //{
+        //    JumpDustIsPlayed = false;
+        //}
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckCircleRadius, groundLayer);
         if (colliders.Length > 0)
         {
             isGrounded = true;
+            if (isGrounded == true && lastIsGrounded == false)
+            {
+                Instantiate(JumpDust, groundCheck.position, groundCheck.rotation);
+            }
         }
-
+        else
+        {
+            isGrounded = false;
+        }
+        lastIsGrounded = isGrounded;
     }
 
     #region DashFunctions
@@ -191,7 +248,7 @@ public class PlayerMovement : MonoBehaviour
     {
         aimSprite.GetComponent<SpriteRenderer>().enabled = false;
         Time.timeScale = 1;
-        rb2d.AddForce(new Vector2(-knockback * Camera.main.GetComponent<CameraController>().controlOffset, knockback), ForceMode2D.Impulse);
+        rb2d.AddForce(new Vector2(-knockback * Camera.main.GetComponent<CameraFollow>().controlOffset, knockback), ForceMode2D.Impulse);
         dashState = DashState.CantMove;
 
         StartCoroutine(Knockback());
@@ -202,7 +259,8 @@ public class PlayerMovement : MonoBehaviour
         while (!isGrounded)
         {
             plAnimatior.Play("Damaged");
-            yield return isGrounded;
+
+            yield return true;
         }
 
         //yield return new WaitForSeconds(cantMoveDur);
@@ -226,7 +284,6 @@ public class PlayerMovement : MonoBehaviour
                 {
                     dashState = DashState.Dashing;
                     StartCoroutine(Dash());
-                    
                 }
 
                 break;
@@ -309,5 +366,15 @@ public class PlayerMovement : MonoBehaviour
     public void DoubleJump() {
         rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
         rb2d.AddForce(Vector2.up * jVelocity, ForceMode2D.Impulse);
+        willJump = false;
+    }
+
+    public void PlaySound (string name) {
+        FindObjectOfType<SoundFXManagerScript>().PlaySound(name);
+    }
+
+    public void TakeDamage() {
+        BeginKnockback();
+        health--;
     }
 }

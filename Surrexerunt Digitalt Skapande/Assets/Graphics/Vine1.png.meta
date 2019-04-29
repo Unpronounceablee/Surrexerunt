@@ -1,8 +1,7 @@
 fileFormatVersion: 2
 guid: 14dbbf326a32f48499a9eeac2a3533e0
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Vine1_0
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -41,13 +40,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 9
-  spritePivot: {x: 0.46261677, y: 0.49999994}
-  spritePixelsToUnits: 105
-  spriteBorder: {x: 403, y: 0, z: 488, w: 0}
+  spritePivot: {x: 0.46315196, y: 0.4943311}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 359, y: 0, z: 487, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -103,33 +102,24 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Vine1_0
-      rect:
-        serializedVersion: 2
-        x: 391
-        y: 0
-        width: 204
-        height: 1080
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 20ddddbf71bb394448b0cb7ccaa9f8bd
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: b18de89cbb6429b4fabb4458e37a115b
+    spriteID: 3dfe45db86ec28544a07deaf6ef8015b
     vertices: []
     indices: 
     edges: []

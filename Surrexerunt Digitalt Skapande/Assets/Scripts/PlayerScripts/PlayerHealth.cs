@@ -6,10 +6,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour {
 
     //Oscar Wadmark (su16b)
-   
-  
-   
-    
+
     //Written by: Oscar Wadmark (su16b)     Edited by: Simon Hansson SU16a
     [SerializeField] private int startingHealth = 100;
     [Range(0, 100)][Tooltip("Remember to set slider's max value to \"100\"")] public int currentHealth;
@@ -24,12 +21,6 @@ public class PlayerHealth : MonoBehaviour {
     PlayerMovement playerMovement;
 
     bool isDead;
-
-    
-
-    
-
-   
 
 	void Awake ()
     {
@@ -46,8 +37,6 @@ public class PlayerHealth : MonoBehaviour {
 
     public void TakeDamage (int amount)
     {
-        
-        
 
         currentHealth -= amount;
 
@@ -62,9 +51,6 @@ public class PlayerHealth : MonoBehaviour {
     void Death()
     {
         isDead = true;
-
-        
-        
 
         playerMovement.enabled = false;
     }
