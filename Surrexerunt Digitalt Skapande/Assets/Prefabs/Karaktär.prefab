@@ -248,6 +248,7 @@ MonoBehaviour:
   mSpeed: 7
   jVelocity: 15
   startHealth: 3
+  health: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -259,7 +260,7 @@ MonoBehaviour:
   dashSmooting: 0.3
   startingDashDuration: 0.15
   dashState: 3
-  dashCooldown: 0.8
+  dashCooldown: 0.3
   keepDashSpeed: 0
   slowTimeScale: 10
   aimSprite: {fileID: 0}
@@ -296,8 +297,13 @@ MonoBehaviour:
   checkpoints:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   respawnDepth: -8
   fadeSpeed: 5
+  enemies: []
+  enemy: {fileID: 1382286852569480, guid: 6a05a267af10843408ac99e1ca59603c, type: 2}
 --- !u!212 &212041204719535114
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -360,6 +366,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.827, y: -3.024}
+  m_AnchoredPosition: {x: 0, y: 1.4}
   m_SizeDelta: {x: 2.5, y: 2.5}
   m_Pivot: {x: 0.5, y: 0.5}
