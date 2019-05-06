@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float mSpeed;  //Player speed
     [SerializeField] float jVelocity;   //Player jump height
     [SerializeField] int startHealth;
-    int health;
+    public int health;
 
     [Header("Ground Check Components")]
     [SerializeField] LayerMask groundLayer; //What layer(s) is ground?
