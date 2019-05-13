@@ -7,6 +7,7 @@ public class HealthIconScript : MonoBehaviour {
     Animator anim;
     SpriteRenderer thisSpriteRenderer;
     PlayerMovement playerMovement;
+    bool isEnabled;
 
     [SerializeField] int index;
 
@@ -18,26 +19,34 @@ public class HealthIconScript : MonoBehaviour {
             thisSpriteRenderer.enabled = true;
     }
 
-    void OnEnable () {
-		
-	}
+    private void OnEnable() {
+        if (playerMovement.health >= index)
+            thisSpriteRenderer.enabled = true;
+    }
+
+    private void Update() {
+        if (gameObject.activeSelf) {
+            StartCoroutine(Display());
+        }
+    }
 
     IEnumerator Display() {
-        yield return new WaitForSeconds(0.5f);
-        anim.SetTrigger("FadeIn");
-        yield return new WaitForSeconds(0.5f);
         if (playerMovement.health < index) {
             anim.SetTrigger("Die");
         }
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         anim.SetTrigger("FadeOut");
     }
 
-    public void SwitchRenderer() {
-        if (thisSpriteRenderer.enabled == true) {
-            thisSpriteRenderer.enabled = false;
-        } else {
-            thisSpriteRenderer.enabled = true;
-        }
+    public void DisableRenderer() {
+        thisSpriteRenderer.enabled = false;
+    }
+
+    private void DisableSelf() {
+        gameObject.SetActive(false);
+    }
+
+    public void ResetIcons() {
+        thisSpriteRenderer.enabled = true;
     }
 }

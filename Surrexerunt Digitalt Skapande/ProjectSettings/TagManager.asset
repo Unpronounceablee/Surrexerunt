@@ -18,6 +18,7 @@ TagManager:
   - AimSprite
   - vineStart
   - TransitionSlave
+  - HealthIcon
   layers:
   - Default
   - TransparentFX

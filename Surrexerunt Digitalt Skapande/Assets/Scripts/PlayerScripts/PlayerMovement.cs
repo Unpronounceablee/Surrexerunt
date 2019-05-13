@@ -78,6 +78,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject JumpDust;
     public bool JumpDustIsPlayed = false;
 
+    [SerializeField] GameObject[] healthIcons;
+
     Respawn respawnScript;
 
     void Start()
@@ -89,6 +91,10 @@ public class PlayerMovement : MonoBehaviour
         walkingSource = GetComponent<AudioSource>();
         aimSprite = GameObject.FindGameObjectWithTag("AimSprite");
         health = startHealth;
+        healthIcons = GameObject.FindGameObjectsWithTag("HealthIcon");
+        for (int i = 0; i < healthIcons.Length; i++) {
+            healthIcons[i].SetActive(false);
+        }
     }
 
     void Update() {
@@ -112,6 +118,9 @@ public class PlayerMovement : MonoBehaviour
             } else {
                 respawnScript.PlayerDied();
                 health = startHealth;
+                for (int i = 0; i < healthIcons.Length; i++) {
+                    healthIcons[i].GetComponent<HealthIconScript>().ResetIcons();
+                }
             }
         }
     }
@@ -376,5 +385,8 @@ public class PlayerMovement : MonoBehaviour
     public void TakeDamage() {
         BeginKnockback();
         health--;
+        for (int i = 0; i < healthIcons.Length; i++) {
+            healthIcons[i].SetActive(true);
+        }
     }
 }
