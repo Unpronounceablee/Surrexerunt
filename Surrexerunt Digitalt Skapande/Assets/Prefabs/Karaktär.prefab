@@ -419,7 +419,7 @@ MonoBehaviour:
   dashSmooting: 0.3
   startingDashDuration: 0.15
   dashState: 3
-  dashCooldown: 0.8
+  dashCooldown: 0.3
   keepDashSpeed: 0
   slowTimeScale: 10
   aimSprite: {fileID: 0}
@@ -455,6 +455,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1338558831991488}
   checkpoints:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

@@ -84,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        
         respawnScript = gameObject.GetComponent<Respawn>();
         rb2d = GetComponent<Rigidbody2D>();
         plAnimatior = GetComponent<Animator>();
@@ -246,11 +247,12 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(DashCooldown());
     }
 
-
+    bool onCooldown;
     private IEnumerator DashCooldown()
     {
+        onCooldown = true;
         yield return new WaitForSeconds(dashCooldown);
-        dashState = DashState.CanDash;
+        onCooldown = false;
     }
 
     private void BeginKnockback()
@@ -301,7 +303,10 @@ public class PlayerMovement : MonoBehaviour
                 break;
 
             case DashState.Cooldown:
-
+                if (!onCooldown && isGrounded)
+                {
+                    dashState = DashState.CanDash;
+                }    
                 break;
             case DashState.CanDash:
                 if (dashButton)

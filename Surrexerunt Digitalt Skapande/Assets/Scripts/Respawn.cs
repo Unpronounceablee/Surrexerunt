@@ -15,6 +15,9 @@ public class Respawn : MonoBehaviour
     private Image blackImage;
     [SerializeField] private float fadeSpeed;
     private bool respawn = true;
+    public GameObject[] enemies;
+    private Vector3[] enemyPositions;
+    [SerializeField] private GameObject enemy;
 
 
 
@@ -28,6 +31,19 @@ public class Respawn : MonoBehaviour
     {
         player = gameObject;
         blackImage = GameObject.Find("FadeToBlack").GetComponent<Image>();
+        SaveEnemies();
+
+    }
+
+    private void SaveEnemies()
+    {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        enemyPositions = new Vector3[enemies.Length];
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemyPositions[i] = enemies[i].transform.position;
+        }
+
     }
 
     private void RespawnPlayer()
@@ -63,9 +79,30 @@ public class Respawn : MonoBehaviour
         }
     }
 
-    public void PlayerDied() {
+    public void PlayerDied()
+    {
         StartCoroutine(Fade());
         respawn = false;
+    }
+
+    private void RespawnEnemies()
+    {
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            if (enemies[i] != null && enemies[i].GetComponent<SimpleEnemy>().dead)
+            {
+                GameObject instEnemy = Instantiate(enemy, enemyPositions[i], Quaternion.identity);
+                enemies[i] = instEnemy;
+
+            }
+            else if (enemies[i] == null)
+            {
+                GameObject instEnemy = Instantiate(enemy, enemyPositions[i], Quaternion.identity);
+                enemies[i] = instEnemy;
+
+            }
+        }
     }
 
     private IEnumerator Fade()
@@ -77,6 +114,7 @@ public class Respawn : MonoBehaviour
             yield return false;
         }
 
+        RespawnEnemies();
         RespawnPlayer();
         respawn = true;
         while (blackImage.color.a > 0)
@@ -86,8 +124,10 @@ public class Respawn : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag == "Checkpoint") {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Checkpoint")
+        {
             currentCheckpoint++;
             other.gameObject.GetComponent<Collider2D>().enabled = false;
         }

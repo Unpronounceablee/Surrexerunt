@@ -13,7 +13,7 @@ public class SimpleEnemy : MonoBehaviour
     bool changeDir = false;
     private GameObject player;
     private bool hasCollided;
-    private bool dead;
+    public bool dead;
 
     private bool runonce;
 
