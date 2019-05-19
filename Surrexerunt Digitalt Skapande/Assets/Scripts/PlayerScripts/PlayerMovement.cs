@@ -79,6 +79,8 @@ public class PlayerMovement : MonoBehaviour
     public bool JumpDustIsPlayed = false;
 
     [SerializeField] GameObject[] healthIcons;
+    [SerializeField] float inviciFrames;
+    [SerializeField]float effectiveInviciFrames;
 
     Respawn respawnScript;
 
@@ -110,7 +112,16 @@ public class PlayerMovement : MonoBehaviour
         FlipSprite();
 
         SetAnimatiorVariables();
+
         WalkingSoundEffect();
+
+        HealthCheck();
+    }
+
+    private void HealthCheck() {
+        if (effectiveInviciFrames >= 0f) {
+            effectiveInviciFrames -= Time.deltaTime;
+        }
 
         if (health <= 0) {
             if (bossBatlle) {
@@ -389,9 +400,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void TakeDamage() {
         BeginKnockback();
-        health--;
-        for (int i = 0; i < healthIcons.Length; i++) {
-            healthIcons[i].SetActive(true);
+        if (effectiveInviciFrames <= 0f) {
+            health--;
+            for (int i = 0; i < healthIcons.Length; i++) {
+                healthIcons[i].SetActive(true);
+            }
         }
+        effectiveInviciFrames = inviciFrames;
     }
 }

@@ -83,6 +83,10 @@ public class BossManager : MonoBehaviour {
     }
 
     public void TakeDamage() {
+        if (health <= 1) {
+            Debug.Log("All Projectiles Destroyd");
+            DestroyAllProjectiles();
+        }
         StartCoroutine(RemoveHealth());
     }
 
@@ -124,6 +128,14 @@ public class BossManager : MonoBehaviour {
 
     void PlaySound (string name) {
         FindObjectOfType<SoundFXManagerScript>().PlaySound(name);
+    }
+
+    void DestroyAllProjectiles () {
+        GameObject[] projectiles;
+        projectiles = GameObject.FindGameObjectsWithTag("Projectile");
+        foreach (var Projectile in projectiles) {
+            Destroy(Projectile.gameObject);
+        }
     }
 
     #region Particles

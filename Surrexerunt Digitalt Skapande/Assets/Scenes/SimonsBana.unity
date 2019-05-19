@@ -18925,12 +18925,12 @@ Prefab:
     - target: {fileID: 224880629168556112, guid: f9a1dc1c9575a7d4c8424d1c759f07c8,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -1.36
+      value: -1.49
       objectReference: {fileID: 0}
     - target: {fileID: 224880629168556112, guid: f9a1dc1c9575a7d4c8424d1c759f07c8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.98
+      value: -3.55
       objectReference: {fileID: 0}
     - target: {fileID: 224880629168556112, guid: f9a1dc1c9575a7d4c8424d1c759f07c8,
         type: 2}
@@ -18972,11 +18972,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114383111314708726, guid: f9a1dc1c9575a7d4c8424d1c759f07c8,
-        type: 2}
-      propertyPath: aimSprite
-      value: 
-      objectReference: {fileID: 144206335}
     - target: {fileID: 114564583816303508, guid: f9a1dc1c9575a7d4c8424d1c759f07c8,
         type: 2}
       propertyPath: checkpoints.Array.data[0]
@@ -18992,6 +18987,17 @@ Prefab:
       propertyPath: checkpoints.Array.data[2]
       value: 
       objectReference: {fileID: 1683576357}
+    - target: {fileID: 114383111314708726, guid: f9a1dc1c9575a7d4c8424d1c759f07c8,
+        type: 2}
+      propertyPath: aimSprite
+      value: 
+      objectReference: {fileID: 144206335}
+    - target: {fileID: 114564583816303508, guid: f9a1dc1c9575a7d4c8424d1c759f07c8,
+        type: 2}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 1382286852569480, guid: 6a05a267af10843408ac99e1ca59603c,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9a1dc1c9575a7d4c8424d1c759f07c8, type: 2}
   m_IsPrefabAsset: 0

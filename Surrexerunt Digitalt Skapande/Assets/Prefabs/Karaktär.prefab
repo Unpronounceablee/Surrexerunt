@@ -458,10 +458,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   respawnDepth: -8
   fadeSpeed: 5
+  enemies: []
+  enemy: {fileID: 0}
 --- !u!114 &114662908847256700
 MonoBehaviour:
   m_ObjectHideFlags: 1

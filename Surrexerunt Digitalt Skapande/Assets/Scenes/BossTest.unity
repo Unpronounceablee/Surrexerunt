@@ -737,6 +737,11 @@ Prefab:
       propertyPath: aimSprite
       value: 
       objectReference: {fileID: 837347453}
+    - target: {fileID: 114383111314708726, guid: f9a1dc1c9575a7d4c8424d1c759f07c8,
+        type: 2}
+      propertyPath: inviciFrames
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9a1dc1c9575a7d4c8424d1c759f07c8, type: 2}
   m_IsPrefabAsset: 0
@@ -1501,6 +1506,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114259327744664460, guid: 32209127d220ffa43a0ece2be2589a4c,
+        type: 2}
+      propertyPath: retry
+      value: 
+      objectReference: {fileID: 409760209}
     - target: {fileID: 114474918033807168, guid: 32209127d220ffa43a0ece2be2589a4c,
         type: 2}
       propertyPath: tpPos.Array.data[0]
@@ -1541,16 +1551,6 @@ Prefab:
       propertyPath: tpPos.Array.data[7]
       value: 
       objectReference: {fileID: 1642141018}
-    - target: {fileID: 114259327744664460, guid: 32209127d220ffa43a0ece2be2589a4c,
-        type: 2}
-      propertyPath: retry
-      value: 
-      objectReference: {fileID: 409760209}
-    - target: {fileID: 114259327744664460, guid: 32209127d220ffa43a0ece2be2589a4c,
-        type: 2}
-      propertyPath: credits
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32209127d220ffa43a0ece2be2589a4c, type: 2}
   m_IsPrefabAsset: 0
